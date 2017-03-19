@@ -1,0 +1,8 @@
+MerchantSafe Unipay PHP SDK
+===========================
+
+Version 0.1
+---------------------------
+- Client implementation done.
+- CreditCard Value Object added.
+- SALE action of Financial Transactions added
