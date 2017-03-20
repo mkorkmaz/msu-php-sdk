@@ -5,9 +5,9 @@ namespace MerchantSafeUnipay\SDK\Environment;
 
 class EnvironmentAbstract
 {
-    private $merchant;
-    private $merchantUser;
-    private $merchantPassword;
+    protected $merchant;
+    protected $merchantUser;
+    protected $merchantPassword;
 
     public function __construct(string $merchant, string $merchantUser, string $merchantPassword)
     {
@@ -18,6 +18,15 @@ class EnvironmentAbstract
 
     public function getUrl()
     {
-        return $this->apiUrl;
+        return static::$apiUrl;
+    }
+
+    public function getMerchantData()
+    {
+        return [
+            'MERCHANT' => $this->merchant,
+            'MERCHANTUSER' => $this->merchantUser,
+            'MERCHANTPASSWORD' => $this->merchantPassword
+        ];
     }
 }

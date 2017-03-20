@@ -15,7 +15,8 @@
     "require": {
         "php": "^7.0",
         "guzzlehttp/guzzle": "^6.2",
-        "zendframework/zend-validator": "^2.8"
+        "zendframework/zend-validator": "^2.8",
+        "monolog/monolog": "^1.22"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.6",

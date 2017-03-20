@@ -10,14 +10,15 @@
 
 namespace MerchantSafeUnipay\SDK;
 
+use GuzzleHttp;
+use GuzzleHttp\Client as GuzzleClient;
+use MerchantSafeUnipay\SDK\Environment\EnvironmentInterface as Environment;
+use Psr\Log\LoggerInterface;
 use MerchantSafeUnipay\SDK\Action\ActionInterface;
 use Psr7\Http\Message\RequestInterface;
-use MerchantSafeUnipay\SDK\Environment\EnvironmentInterface as Environment;
 use MerchantSafeUnipay\SDK\Exception\InvalidArgumentException;
 use MerchantSafeUnipay\SDK\Exception\BadMethodCallException;
 use MerchantSafeUnipay\SDK\Exception\RequestException;
-use GuzzleHttp;
-use GuzzleHttp\Client as GuzzleClient;
 
 class Client
 {
@@ -63,6 +64,8 @@ class Client
      */
     private $guzzleClient;
 
+    private $logger;
+
     private static $headers = [
         'User-Agent' => 'MerchantSafeUnipayPhpSDK/1.0',
         'Accept'     => 'application/json'
@@ -88,11 +91,13 @@ class Client
      * Client constructor.
      * @param Environment $environment
      * @param GuzzleClient $guzzleClient
+     * @param LoggerInterface $logger
      */
-    public function __construct(Environment $environment, GuzzleClient $guzzleClient)
+    public function __construct(Environment $environment, GuzzleClient $guzzleClient, LoggerInterface $logger)
     {
         $this->environment = $environment;
         $this->guzzleClient = $guzzleClient;
+        $this->logger = $logger;
     }
 
     /**
@@ -125,12 +130,12 @@ class Client
             throw new BadMethodCallException($message);
         }
         $actionName = $arguments[0];
-        $actionObject = new $actionClass(self::$merchantParams);
+        $actionObject = new $actionClass($this->environment->getMerchantData());
         if (method_exists($actionObject, $actionName)) {
             $message = sprintf('%s is not valid MerchantSafeUnipay API action.', $name);
             throw new BadMethodCallException($message);
         }
-        try{
+        try {
             return $actionObject->$actionName($arguments[1]);
         } catch (TypeError $e) {
             $message = 'This action needs arguments, no argument provided.';

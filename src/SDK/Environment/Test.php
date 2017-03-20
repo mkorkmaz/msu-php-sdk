@@ -5,5 +5,5 @@ namespace MerchantSafeUnipay\SDK\Environment;
 
 class Test extends EnvironmentAbstract implements EnvironmentInterface
 {
-    private $apiUrl = 'https://test.merchantsafeunipay.com/msu/api/v2';
+    static protected $apiUrl = 'https://test.merchantsafeunipay.com/msu/api/v2';
 }

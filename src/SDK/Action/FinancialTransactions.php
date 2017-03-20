@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace MerchantSafeUnipay\SDK\Action;
 
-
 use MerchantSafeUnipay;
 
 class FinancialTransactions extends ActionAbstract implements ActionInterface
