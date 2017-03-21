@@ -13,6 +13,7 @@ namespace MerchantSafeUnipay\SDK;
 use GuzzleHttp;
 use GuzzleHttp\Client as GuzzleClient;
 use MerchantSafeUnipay\SDK\Environment\EnvironmentInterface as Environment;
+use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LoggerInterface;
 use MerchantSafeUnipay\SDK\Action\ActionInterface;
 use Psr7\Http\Message\RequestInterface;
@@ -106,13 +107,20 @@ class Client
      * @throws BadMethodCallException
      * @throws RequestException
      * @throws InvalidArgumentException
-     * @return RequestInterface
+     * @return array
      */
     public function __call(string $name, array $arguments)
     {
-        $action = $this->getActionDataForRequest($name, $arguments);
+        $action = $this->getAction($name, $arguments);
         $headers = array_merge(self::$headers, $action->getHeaders());
-        return $this->httpRequest($action->getAction(), $headers, $action->getQueryParams());
+        $response = $this->httpRequest($action->getAction(), $headers, $action->getQueryParams());
+
+        return [
+            'status' => $response->getStatusCode(),
+            'reason' => $response->getReasonPhrase(),
+            'headers' => $response->getHeaders(),
+            'data' => json_decode((string) $response->getBody(), true)
+        ];
     }
 
     /**
@@ -122,21 +130,27 @@ class Client
      * @throws BadMethodCallException
      * @throws InvalidArgumentException
      */
-    private function getActionDataForRequest(string $name, array $arguments)
+    private function getAction(string $name, array $arguments)
     {
-        $actionClass =  '\\MerchantSafeUnipay\\SDK\\Actions\\'. ucfirst($name);
-        if (!in_array($name, self::$validActions, true) || class_exists($actionClass)) {
+        $actionClass =  '\\MerchantSafeUnipay\\SDK\\Action\\'. ucfirst($name);
+
+        if (!in_array($name, self::$validActions, true) || !class_exists($actionClass)) {
             $message = sprintf('%s is not valid MerchantSafeUnipay API action.', $name);
             throw new BadMethodCallException($message);
         }
         $actionName = $arguments[0];
         $actionObject = new $actionClass($this->environment->getMerchantData());
-        if (method_exists($actionObject, $actionName)) {
-            $message = sprintf('%s is not valid MerchantSafeUnipay API action.', $name);
+        if (!method_exists($actionObject, $actionName)) {
+            $message = sprintf(
+                '%s/%s is not valid MerchantSafeUnipay API action.',
+                ucfirst($name),
+                ucfirst($actionName)
+            );
             throw new BadMethodCallException($message);
         }
         try {
-            return $actionObject->$actionName($arguments[1]);
+            $actionObject->$actionName($arguments[1]);
+            return $actionObject;
         } catch (TypeError $e) {
             $message = 'This action needs arguments, no argument provided.';
             throw new InvalidArgumentException($message);
@@ -148,7 +162,7 @@ class Client
      * @param array $headers
      * @param array  $queryParams
      * @throws RequestException
-     * @return RequestInterface
+     * @return ResponseInterface
      */
     private function httpRequest(string $actionName, array $headers, array $queryParams)
     {
@@ -160,22 +174,8 @@ class Client
         ];
         try {
             return $this->guzzleClient->post($uri, $options);
-        } catch (GuzzleHttp\Exception\ConnectException $e) {
-            $message =  'Connection Error: ' . $e->getMessage();
-        } catch (GuzzleHttp\Exception\ClientException $e) {
-            $message =  'Client Error: ' . $e->getMessage();
-        } catch (GuzzleHttp\Exception\ServerException $e) {
-            $message =  'Server Error: ' . $e->getMessage();
-        } catch (GuzzleHttp\Exception\BadResponseException $e) {
-            $message =  'Bad Response Error: ' . $e->getMessage();
-        } catch (GuzzleHttp\Exception\TooManyRedirectsException $e) {
-            $message =  'Too Many Redirects Error: ' . $e->getMessage();
-        } catch (GuzzleHttp\Exception\RequestException $e) {
-            $message =  'Request Error: ' . $e->getMessage();
-        } catch (GuzzleHttp\Exception\TransferException $e) {
-            $message =  'Network Transfer Error: ' . $e->getMessage();
-        } catch (GuzzleHttp\Exception\SeekException $e) {
-            $message =  'Seek Stream Error: '  .$e->getMessage();
+        } catch (Exception $e) {
+            $message =   $e->getMessage();
         }
         $message = sprintf('MerchantSafe Unipay API Request Error:% s', $message);
         throw new RequestException($message);
