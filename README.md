@@ -12,7 +12,7 @@ since Asseco don't provide any PHP SDK.
 You need [Composer](https://getcomposer.org/) to install MerchantSafe Unipay PHP SDK
 
 ```bash
-composer install mkorkmaz/msu-php-sdk
+composer require mkorkmaz/msu-php-sdk
 ```
 
 ## Basic Usage
