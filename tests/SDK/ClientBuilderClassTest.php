@@ -26,7 +26,6 @@ class ClientBuilderClassTest extends TestCase
         $merchantUser,
         $merchantPassword
     ) {
-    
         $client = SDK\ClientBuilder::create()
             ->setEnvironment($env, $merchant, $merchantUser, $merchantPassword)
             ->build();

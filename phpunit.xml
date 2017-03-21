@@ -16,7 +16,7 @@
     </php>
 
     <testsuites>
-        <testsuite name="MSUAPI Test Suite">
+        <testsuite name="MSU PHP SDK Test Suite">
             <directory>tests</directory>
         </testsuite>
     </testsuites>

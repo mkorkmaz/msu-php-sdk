@@ -172,9 +172,15 @@ class MyCreditCardClass extends TestCase
         $faker = Faker\Factory::create();
 
         return [
-            [$faker->creditCardNumber(self::$fakerZendValidatorCardTypes[CreditCardValidator::VISA]), CreditCardValidator::VISA],
-            [$faker->creditCardNumber(self::$fakerZendValidatorCardTypes[CreditCardValidator::MASTERCARD]), CreditCardValidator::MASTERCARD],
-            [$faker->creditCardNumber(self::$fakerZendValidatorCardTypes[CreditCardValidator::AMERICAN_EXPRESS]), CreditCardValidator::AMERICAN_EXPRESS]
+            ['4355084355084358', CreditCardValidator::VISA],
+            [
+                $faker->creditCardNumber(self::$fakerZendValidatorCardTypes[CreditCardValidator::MASTERCARD]),
+                CreditCardValidator::MASTERCARD
+            ],
+            [
+                $faker->creditCardNumber(self::$fakerZendValidatorCardTypes[CreditCardValidator::AMERICAN_EXPRESS]),
+                CreditCardValidator::AMERICAN_EXPRESS
+            ]
         ];
     }
 
