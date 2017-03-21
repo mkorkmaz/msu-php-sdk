@@ -23,7 +23,7 @@ $merchant = 'COMPANYNAME'; // Given by Asseco
 $merchantUser = 'apiuser@companyname.com'; // Created on MSU Panel
 $merchantPassword = 'u+B56?mcjh23'; // Created on MSU Panel
 
-$client = SDK\ClientBuilder::create()
+$client = MerchantSafeUnipay\SDK\ClientBuilder::create()
     ->setEnvironment($env, $merchant , $merchantUser, $merchantPassword)
     ->setLogger()
     ->build();
