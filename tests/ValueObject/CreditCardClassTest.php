@@ -58,8 +58,7 @@ class MyCreditCardClass extends TestCase
             CreditCardValidator::VISA,
             $this->faker->name
         );
-
-        $result = $creditCard->validate();
+        $creditCard->validate();
     }
 
 

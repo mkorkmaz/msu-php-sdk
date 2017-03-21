@@ -72,12 +72,6 @@ class Client
         'Accept'     => 'application/json'
     ];
 
-    private static $merchantParams = [
-        'MERCHANT' => null,
-        'MERCHANTUSER' => null,
-        'MERCHANTPASSWORD' => null
-    ];
-
     /**
      * @var array
      */

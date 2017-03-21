@@ -46,7 +46,7 @@ class ClientBuilderClassTest extends TestCase
      */
     public function shouldFailToInstantiateClientObjectSuccessfullyForInvalidEnvironment()
     {
-        $client = SDK\ClientBuilder::create()
+        SDK\ClientBuilder::create()
             ->setEnvironment('invalid_env', 'm', 'mu', 'mp')
             ->build();
     }
