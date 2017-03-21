@@ -17,104 +17,99 @@ composer install mkorkmaz/msu-php-sdk
 
 ## Basic Usage
 
-TODO
+```php
+$env = 'test'; // Options: 'test', 'production'
+$merchant = 'COMPANYNAME'; // Given by Asseco
+$merchantUser = 'apiuser@companyname.com'; // Created on MSU Panel
+$merchantPassword = 'u+B56?mcjh23'; // Created on MSU Panel
+
+$client = SDK\ClientBuilder::create()
+    ->setEnvironment($env, $merchant , $merchantUser, $merchantPassword)
+    ->setLogger()
+    ->build();
+    
+$args = [
+    'MERCHANTPAYMENTID' => $orderPaymetId,
+    'CUSTOMER' => '1',
+    'AMOUNT' => 123.50,
+    'CURRENCY' => 'TRY',
+    'CUSTOMEREMAIL' => 'mehmet@github.com',
+    'CUSTOMERNAME' => 'Mehmet Korkmaz',
+    'CUSTOMERIP'    => '127.0.0.1',
+    'CARDPAN' => '5406675406675403', // Test Card Number
+    'CARDEXPIRY' => '12.30',
+    'NAMEONCARD' => 'MEHMET KORKMAZ',
+    'CARDCVV' => '000'
+];
+$response = $this->client->financialTransactions('sale', $args);
+
+echo $response['data']['responseCode']; // prints '00' which means transaction has been done successfully.
+
+```
 
 ## Actions
 
 
-- [x] Financial Transactions - Sale
-- [ ] Financial Transactions - Preauth
-- [ ] Financial Transactions - Postauth
-- [ ] Financial Transactions - Void
-- [ ] Financial Transactions - Refund
-- [ ] Approve Actions - Approve Transaction
-- [ ] Approve Actions - Approve Dealer
-- [ ] Reject Actions - Reject Transaction
-- [ ] Session - Session Token
-- [ ] Session - Extend
-- [ ] Pay by Link Payment Actions - Add
-- [ ] Pay by Link Payment Actions - Cancel
-- [ ] Pay by Link Payment Actions - Resend
-- [ ] Recurring Plan Actions - Add
-- [ ] Recurring Plan Actions - Edit
-- [ ] Recurring Plan Actions - Delete
-- [ ] Recurring Plan Actions - Resend Link
-- [ ] Recurring Plan Card Actions - Add
-- [ ] Recurring Plan Card Actions - Query
-- [ ] Recurring Plan Card Actions - Delete
-- [ ] Recurring Plan Actions - Edit
-- [ ] Payment System Actions - Add
-- [ ] Payment System Actions - Edit
-- [ ] Payment System Actions - Read
-- [ ] Payment System Actions - Enable
-- [ ] Payment System Actions - Disable
-- [ ] Payment Type - Add
-- [ ] Payment Type - Edit
-- [ ] Payment Type - Enable
-- [ ] Payment Type - Disable
-- [ ] Payment Policy - Add
-- [ ] Payment Policy - Edit
-- [ ] Message Content - Add
-- [ ] Message Content - Edit
-- [ ] Message Content - Delete
-- [ ] e-Wallet Actions - Add Card
-- [ ] e-Wallet Actions - Edit Card
-- [ ] e-Wallet Actions - Delete Card
-- [ ] Merchant Actions - Enable
-- [ ] Merchant Actions - Disable
-- [ ] Merchant User Actions - Add
-- [ ] Merchant User Actions - Edit
-- [ ] Merchant User Actions - Reinvite
-- [ ] Dealer Actions - Add
-- [ ] Dealer Actions - Edit
-- [ ] Dealer Actions - Enable
-- [ ] Dealer Actions - Disable
-- [ ] Dealer Actions - MerchantUser Dealer Add
-- [ ] Dealer Actions - MerchantUser Dealer Remove
-- [ ] Dealer Type Actions - Add
-- [ ] Dealer Type Actions - Edit
-- [ ] Dealer Type Actions - Delete
-- [ ] Dealer Payment System Type Actions - Add
-- [ ] Dealer Payment System Type Actions - Edit
-- [ ] Dealer Payment System Type Actions - Delete
-- [ ] Query - Transaction
-- [ ] Query - Dealer Transaction
-- [ ] Query - Sub Dealer Transaction
-- [ ] Query - Installment
-- [ ] Query - Card
-- [ ] Query - Card Expiry
-- [ ] Query - Customer
-- [ ] Query - Session
-- [ ] Query - Pay By Link Payment
-- [ ] Query - Bin
-- [ ] Query - Campaign
-- [ ] Query - Online Campaign 
-- [ ] Query - Recurring Plan
-- [ ] Query - Payment Systems
-- [ ] Query - Merchant Payment Systems
-- [ ] Query - Merchant Profile
-- [ ] Query - Payment System Data
-- [ ] Query - Points
-- [ ] Query - Payment Policy
-- [ ] Query - Split Payment
-- [ ] Query - Merchant
-- [ ] Query - Merchant Content
-- [ ] Query - Merchant Status History
-- [ ] Query - Merchant User
-- [ ] Query - User Role Permission
-- [ ] Query - Dealer
-- [ ] Query - Dealer Type
-- [ ] Query - Dealer Payment System Type
-- [ ] Query - Dealer Status History
-- [ ] Query - Merchant User Dealers
-- [ ] Query - Groups
-- [ ] Query - Executive Report
-- [ ] Query - Transaction Rule
-
-
+1. [x] Financial Transactions
+2. [x] Approve Actions
+3. [x] Reject Actions
+4. [x] Session
+5. [x] Pay by Link Payment Actions
+6. [x] Recurring Plan Actions
+7. [x] Recurring Plan Card Actions
+8. [x] Recurring Plan Actions
+9. [x] Payment Type
+10. [x] Payment Policy
+11. [x] Message Content
+12. [x] e-Wallet Actions
+13. [x] Merchant Actions
+14. [x] Merchant User Actions
+15. [x] Dealer Actions
+16. [x] Dealer Type Actions
+17. [x] Dealer Payment System Type Actions
+18. Query
+  * [ ] Transaction 
+  * [ ] Dealer Transaction
+  * [ ] Sub Dealer Transaction
+  * [ ] Installment
+  * [ ] Card
+  * [ ] Card Expiry
+  * [ ] Customer
+  * [ ] Session
+  * [ ] Pay By Link Payment
+  * [ ] Bin
+  * [ ] Campaign
+  * [ ] Online Campaign 
+  * [ ] Recurring Plan
+  * [ ] Payment Systems
+  * [ ] Merchant Payment Systems
+  * [ ] Merchant Profile
+  * [ ] Payment System Data
+  * [ ] Points
+  * [ ] Payment Policy
+  * [ ] Split Payment
+  * [ ] Merchant
+  * [ ] Merchant Content
+  * [ ] Merchant Status History
+  * [ ] Merchant User
+  * [ ] User Role Permission
+  * [ ] Dealer
+  * [ ] Dealer Type
+  * [ ] Dealer Payment System Type
+  * [ ] Dealer Status History
+  * [ ] Merchant User Dealers
+  * [ ] Groups
+  * [ ] Executive Report
+  * [ ] Transaction Rule
 
 
 ## Disclaimer
 
 MerchantSafe Unipay (MSU) is trademark of Asseco SEE Turkey
 
+## TODO
+
+- Query Actions
+- Argument combinations for the actions will be implemented
+- Integration tests of Actions (At least %80 Code Coverage)
+- Documentation
