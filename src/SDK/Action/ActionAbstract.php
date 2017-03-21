@@ -8,7 +8,7 @@ class ActionAbstract
     protected $merchantParams;
     protected $action;
     protected $queryParameters;
-    protected $headers;
+    protected $headers = [];
 
     public function __construct(array $merchantParams)
     {
