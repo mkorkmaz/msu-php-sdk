@@ -18,9 +18,9 @@ class FinancialTransactionsClassTest extends TestCase
         if (file_exists($envFile)) {
             include($envFile);
         } else {
-            $MSUPHPSDK_M = getenv('MUSPHPSDK_M');
-            $MSUPHPSDK_U = getenv('MUSPHPSDK_U');
-            $MSUPHPSDK_P = getenv('MUSPHPSDK_P');
+            $MSUPHPSDK_M = getenv('MSUPHPSDK_M');
+            $MSUPHPSDK_U = getenv('MSUPHPSDK_U');
+            $MSUPHPSDK_P = getenv('MSUPHPSDK_P');
         }
         $this->client = ClientBuilder::create()
             ->setEnvironment(
