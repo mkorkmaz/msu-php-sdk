@@ -14,7 +14,7 @@ class FinancialTransactionsClassTest extends TestCase
 
     public function setUp()
     {
-        $envFile = dirname(__DIR__, 2) . '/environment.php';
+        $envFile = dirname(__DIR__, 2) . '/environments.php';
         if (file_exists($envFile)) {
             include($envFile);
         } else {
