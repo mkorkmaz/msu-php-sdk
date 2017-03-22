@@ -16,7 +16,7 @@ class MyCreditCardClass extends TestCase
 {
     protected $faker;
 
-    static protected $fakerZendValidatorCardTypes = [
+    static protected $fakerCardTypes = [
         'Mastercard' => 'MasterCard',
         'Visa' => 'Visa',
         'American_Express' => 'American Express'
@@ -33,7 +33,7 @@ class MyCreditCardClass extends TestCase
     public function shouldValidateMethodReturnTrue()
     {
         $creditCard = new CreditCard(
-            $this->faker->creditCardNumber(self::$fakerZendValidatorCardTypes[CreditCardValidator::MASTERCARD]),
+            $this->faker->creditCardNumber(self::$fakerCardTypes[CreditCardValidator::MASTERCARD]),
             '12',
             date('Y'),
             '123',
@@ -51,7 +51,7 @@ class MyCreditCardClass extends TestCase
     public function shouldValidateMethodThrowException()
     {
         $creditCard = new CreditCard(
-            $this->faker->creditCardNumber(self::$fakerZendValidatorCardTypes[CreditCardValidator::MASTERCARD]),
+            $this->faker->creditCardNumber(self::$fakerCardTypes[CreditCardValidator::MASTERCARD]),
             '12',
             date('Y'),
             '123',
@@ -173,11 +173,11 @@ class MyCreditCardClass extends TestCase
         return [
             ['4355084355084358', CreditCardValidator::VISA],
             [
-                $faker->creditCardNumber(self::$fakerZendValidatorCardTypes[CreditCardValidator::MASTERCARD]),
+                $faker->creditCardNumber(self::$fakerCardTypes[CreditCardValidator::MASTERCARD]),
                 CreditCardValidator::MASTERCARD
             ],
             [
-                $faker->creditCardNumber(self::$fakerZendValidatorCardTypes[CreditCardValidator::AMERICAN_EXPRESS]),
+                $faker->creditCardNumber(self::$fakerCardTypes[CreditCardValidator::AMERICAN_EXPRESS]),
                 CreditCardValidator::AMERICAN_EXPRESS
             ]
         ];

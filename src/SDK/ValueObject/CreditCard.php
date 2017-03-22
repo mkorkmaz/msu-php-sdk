@@ -12,7 +12,7 @@ class CreditCard
     private $expireDateMonth;
     private $expireDateYear;
     private $nameOnCard;
-    private $cardVerificationValue;
+    private $cardVerificationVal;
     private $cardType; // check values of Zend\Validator\CreditCard::$cardName
 
     protected static $validCardTypes = [
@@ -34,7 +34,7 @@ class CreditCard
         string $cardNumber,
         string $expireDateMonth,
         string $expireDateYear,
-        string $cardVerificationValue,
+        string $cardVerificationVal,
         string $cardType,
         string $nameOnCard
     ) {
@@ -42,7 +42,7 @@ class CreditCard
         $this->cardNumber = trim($cardNumber);
         $this->expireDateMonth = trim($expireDateMonth);
         $this->expireDateYear = trim($expireDateYear);
-        $this->cardVerificationValue = trim($cardVerificationValue);
+        $this->cardVerificationVal = trim($cardVerificationVal);
         $this->cardType = trim($cardType);
         $this->nameOnCard = trim($nameOnCard);
     }
@@ -51,7 +51,7 @@ class CreditCard
     {
         $this->validateCardType();
         $this->validateCardNumber();
-        $this->validateCardVerificationValue();
+        $this->validatecardVerificationValue();
         $this->validateNameOnCard();
         $this->validateExpireDates();
         return true;
@@ -76,21 +76,21 @@ class CreditCard
         return true;
     }
 
-    private function validateCardVerificationValue()
+    private function validatecardVerificationValue()
     {
-        if (is_numeric($this->cardVerificationValue)
+        if (is_numeric($this->cardVerificationVal)
             && $this->cardType === CreditCardValidator::AMERICAN_EXPRESS
-            && strlen($this->cardVerificationValue) === 4
+            && strlen($this->cardVerificationVal) === 4
         ) {
             return true;
         }
-        if (is_numeric($this->cardVerificationValue)
+        if (is_numeric($this->cardVerificationVal)
             && $this->cardType !== CreditCardValidator::AMERICAN_EXPRESS
-            && strlen($this->cardVerificationValue) === 3
+            && strlen($this->cardVerificationVal) === 3
         ) {
             return true;
         }
-        $message = sprintf('%s is not valid CVV.', $this->cardVerificationValue);
+        $message = sprintf('%s is not valid CVV.', $this->cardVerificationVal);
         throw new InvalidArgumentException($message);
     }
 
