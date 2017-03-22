@@ -67,7 +67,7 @@ echo $response['data']['responseCode']; // prints '00' which means transaction h
 15. [x] Dealer Actions
 16. [x] Dealer Type Actions
 17. [x] Dealer Payment System Type Actions
-18. Query
+18. [ ] Query
   * [ ] Transaction 
   * [ ] Dealer Transaction
   * [ ] Sub Dealer Transaction
@@ -105,7 +105,8 @@ echo $response['data']['responseCode']; // prints '00' which means transaction h
 
 ## Disclaimer
 
-MerchantSafe Unipay (MSU) is trademark of Asseco SEE Turkey
+- MerchantSafe Unipay (MSU) is trademark of Asseco SEE Turkey
+- I am not affiliated with Asseco SEE Turkey
 
 ## TODO
 

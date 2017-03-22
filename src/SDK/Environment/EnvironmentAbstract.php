@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace MerchantSafeUnipay\SDK\Environment;
 
-class EnvironmentAbstract
+abstract class EnvironmentAbstract
 {
     protected $merchant;
     protected $merchantUser;

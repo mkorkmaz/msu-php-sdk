@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace MerchantSafeUnipay\SDK\Action;
 
-class ActionAbstract
+abstract class ActionAbstract
 {
     protected $merchantParams;
     protected $action;
