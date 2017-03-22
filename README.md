@@ -41,7 +41,7 @@ $args = [
     'NAMEONCARD' => 'MEHMET KORKMAZ',
     'CARDCVV' => '000'
 ];
-$response = $this->client->financialTransactions('sale', $args);
+$response = $client->financialTransactions('sale', $args);
 
 echo $response['data']['responseCode']; // prints '00' which means transaction has been done successfully.
 
