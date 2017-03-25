@@ -3,7 +3,7 @@
 /**
  * @package MerchantSafeUnipay\SDK
  * @author Mehmet Korkmaz <mehmet@mkorkmaz.com>
- * @licence https://opensource.org/licenses/mit-license.php MIT
+ * @license https://opensource.org/licenses/mit-license.php MIT
  *
  * Documentation can be found at https://merchantsafeunipay.com/msu/api/v2/doc
  */
