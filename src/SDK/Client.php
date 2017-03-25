@@ -51,9 +51,43 @@ class Client
         'paymentType',
         'recurringPayment',
         'recurringPlan',
-        'recurringPlanCard',
-        'query',
+        'recurringPlanCard'
+    ];
 
+    private static $validQueryActions = [
+        'Transaction',
+        'DealerTransaction',
+        'SubDealerTransaction',
+        'Installment',
+        'Card',
+        'CardExpiry',
+        'Customer',
+        'Session',
+        'PayByLinkPayment',
+        'Bin',
+        'Campaign',
+        'OnlineCampaign',
+        'RecurringPlan',
+        'PaymentSystems',
+        'MerchantPaymentSystems',
+        'MerchantProfile',
+        'PaymentSystemData',
+        'Points',
+        'PaymentPolicy',
+        'SplitPayment',
+        'Merchant',
+        'MerchantContent',
+        'MerchantStatusHistory',
+        'MerchantUser',
+        'UserRolePermission',
+        'Dealer',
+        'DealerType',
+        'DealerPst',
+        'DealerStatusHistory',
+        'MerchantUserDealers',
+        'Groups',
+        'ExecutiveReport',
+        'TransactionRule'
     ];
 
     /**
@@ -105,33 +139,55 @@ class Client
      */
     public function __call(string $name, array $arguments)
     {
-        $action = $this->getAction($name, $arguments);
-        $headers = array_merge(self::$headers, $action->getHeaders());
-        $response = $this->httpRequest($action->getAction(), $headers, $action->getQueryParams());
+        return $this->requestAction($this->getCallAction($name, $arguments));
+    }
 
-        return [
-            'status' => $response->getStatusCode(),
-            'reason' => $response->getReasonPhrase(),
-            'headers' => $response->getHeaders(),
-            'data' => json_decode((string) $response->getBody(), true)
-        ];
+    /**
+     * @param $name
+     * @param $arguments
+     * @throws BadMethodCallException
+     * @throws RequestException
+     * @throws InvalidArgumentException
+     * @return array
+     */
+    public function query(string $name, array $arguments)
+    {
+        return $this->requestAction($this->getQueryAction($name, $arguments));
+    }
+
+    private function getCallAction(string $name, array $arguments)
+    {
+        $namespace = '\\MerchantSafeUnipay\\SDK\\Action';
+        $actionClass =  $namespace . '\\'. ucfirst($name);
+        if (!in_array($name, self::$validActions, true) || !class_exists($actionClass)) {
+            $message = sprintf('%s is not valid MerchantSafeUnipay API action.', $name);
+            throw new BadMethodCallException($message);
+        }
+        return $this->actionFactory($name, $arguments, $namespace);
+    }
+    private function getQueryAction(string $name, array $arguments)
+    {
+        $name = str_replace(' ', '', ucwords(str_replace('_', '', $name)));
+        $namespace = '\\MerchantSafeUnipay\\SDK\\Action\\Query';
+        $actionClass =  $namespace . '\\'. ucfirst($name);
+        if (!in_array($name, self::$validQueryActions, true) || !class_exists($actionClass)) {
+            $message = sprintf('%s is not valid MerchantSafeUnipay API query action.', $name);
+            throw new BadMethodCallException($message);
+        }
+        return $this->actionFactory($name, ['getQuery', $arguments], $namespace);
     }
 
     /**
      * @param string $name
      * @param array $arguments
+     * @param string $namespace
      * @return ActionInterface
      * @throws BadMethodCallException
      * @throws InvalidArgumentException
      */
-    private function getAction(string $name, array $arguments)
+    private function actionFactory(string $name, array $arguments, string $namespace)
     {
-        $actionClass =  '\\MerchantSafeUnipay\\SDK\\Action\\'. ucfirst($name);
-
-        if (!in_array($name, self::$validActions, true) || !class_exists($actionClass)) {
-            $message = sprintf('%s is not valid MerchantSafeUnipay API action.', $name);
-            throw new BadMethodCallException($message);
-        }
+        $actionClass =  $namespace . '\\'. ucfirst($name);
         $actionName = $arguments[0];
         $actionObject = new $actionClass($this->environment->getMerchantData());
         if (!method_exists($actionObject, $actionName)) {
@@ -149,6 +205,19 @@ class Client
             $message = 'This action needs arguments, no argument provided.';
             throw new InvalidArgumentException($message);
         }
+    }
+
+    private function requestAction(ActionInterface $action)
+    {
+        $headers = array_merge(self::$headers, $action->getHeaders());
+        $response = $this->httpRequest($action->getAction(), $headers, $action->getQueryParams());
+
+        return [
+            'status' => $response->getStatusCode(),
+            'reason' => $response->getReasonPhrase(),
+            'headers' => $response->getHeaders(),
+            'data' => json_decode((string) $response->getBody(), true)
+        ];
     }
 
     /**

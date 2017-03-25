@@ -38,7 +38,6 @@ class FinancialTransactionsClassTest extends TestCase
 
     public function shouldMakeSaleSuccessfully()
     {
-
         $args = [
             'MERCHANTPAYMENTID' => date('Ymdhis'),
             'CUSTOMER' => '1',
@@ -54,6 +53,15 @@ class FinancialTransactionsClassTest extends TestCase
         ];
         $response = $this->client->financialTransactions('sale', $args);
         $this->assertArrayHasKey('pgTranId', $response['data']);
+        $this->assertArrayHasKey('responseCode', $response['data']);
+        $this->assertEquals('00', $response['data']['responseCode']);
+
+
+
+        $args = [
+            'PGTRANID '=> $response['data']['pgTranId']
+        ];
+        $response = $this->client->query('transaction', $args);
         $this->assertArrayHasKey('responseCode', $response['data']);
         $this->assertEquals('00', $response['data']['responseCode']);
     }
