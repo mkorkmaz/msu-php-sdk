@@ -14,7 +14,8 @@ class EnvironmentClassesTest extends TestCase
         'merchantPassword' => 'Passwd',
     ];
 
-    static protected $apiTestUrl = 'https://entegrasyon.asseco-see.com.tr/msu/api/v2';
+    static protected $apiTestUrl = 'https://test.merchantsafeunipay.com/msu/api/v2';
+    static protected $apiIntegrationUrl = 'https://entegrasyon.asseco-see.com.tr/msu/api/v2';
     static protected $apiProductionUrl = 'https://merchantsafeunipay.com/msu/api/v2';
 
 
