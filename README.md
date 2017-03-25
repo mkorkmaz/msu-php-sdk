@@ -67,40 +67,7 @@ echo $response['data']['responseCode']; // prints '00' which means transaction h
 15. [x] Dealer Actions
 16. [x] Dealer Type Actions
 17. [x] Dealer Payment System Type Actions
-18. [ ] Query
-  * [ ] Transaction 
-  * [ ] Dealer Transaction
-  * [ ] Sub Dealer Transaction
-  * [ ] Installment
-  * [ ] Card
-  * [ ] Card Expiry
-  * [ ] Customer
-  * [ ] Session
-  * [ ] Pay By Link Payment
-  * [ ] Bin
-  * [ ] Campaign
-  * [ ] Online Campaign 
-  * [ ] Recurring Plan
-  * [ ] Payment Systems
-  * [ ] Merchant Payment Systems
-  * [ ] Merchant Profile
-  * [ ] Payment System Data
-  * [ ] Points
-  * [ ] Payment Policy
-  * [ ] Split Payment
-  * [ ] Merchant
-  * [ ] Merchant Content
-  * [ ] Merchant Status History
-  * [ ] Merchant User
-  * [ ] User Role Permission
-  * [ ] Dealer
-  * [ ] Dealer Type
-  * [ ] Dealer Payment System Type
-  * [ ] Dealer Status History
-  * [ ] Merchant User Dealers
-  * [ ] Groups
-  * [ ] Executive Report
-  * [ ] Transaction Rule
+18. [x] Query
 
 
 ## Disclaimer
@@ -110,7 +77,6 @@ echo $response['data']['responseCode']; // prints '00' which means transaction h
 
 ## TODO
 
-- Query Actions
-- Argument combinations for the actions will be implemented
 - Integration tests of Actions (At least %80 Code Coverage)
+- Argument combinations for the actions will be implemented
 - Documentation
