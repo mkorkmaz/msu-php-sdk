@@ -5,7 +5,7 @@ namespace MerchantSafeUnipay\SDK\Action;
 
 use MerchantSafeUnipay;
 
-class DealerPST extends ActionAbstract implements ActionInterface
+class DealerPst extends ActionAbstract implements ActionInterface
 {
     public function add($args)
     {
