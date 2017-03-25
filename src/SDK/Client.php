@@ -10,7 +10,6 @@
 
 namespace MerchantSafeUnipay\SDK;
 
-use GuzzleHttp;
 use GuzzleHttp\Client as GuzzleClient;
 use MerchantSafeUnipay\SDK\Environment\EnvironmentInterface as Environment;
 use Psr\Http\Message\ResponseInterface;

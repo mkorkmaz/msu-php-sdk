@@ -5,7 +5,7 @@ namespace MerchantSafeUnipay\SDK\Action;
 
 use MerchantSafeUnipay;
 
-class PayByLinkPayment extends ActionAbstract implements ActionInterface
+final class PayByLinkPayment extends ActionAbstract implements ActionInterface
 {
 
     public function add($args)

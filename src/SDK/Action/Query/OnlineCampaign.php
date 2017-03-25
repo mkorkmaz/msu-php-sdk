@@ -6,7 +6,7 @@ namespace MerchantSafeUnipay\SDK\Action\Query;
 use MerchantSafeUnipay;
 use MerchantSafeUnipay\SDK\Action\ActionInterface;
 
-class OnlineCampaign extends QueryAbstract implements ActionInterface
+final class OnlineCampaign extends QueryAbstract implements ActionInterface
 {
     static protected $queryAction = 'QUERYCAMPAIGNONLINE';
     static protected $queryParamKeys = [

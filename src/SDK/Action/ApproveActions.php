@@ -5,7 +5,7 @@ namespace MerchantSafeUnipay\SDK\Action;
 
 use MerchantSafeUnipay;
 
-class ApproveActions extends ActionAbstract implements ActionInterface
+final class ApproveActions extends ActionAbstract implements ActionInterface
 {
 
 

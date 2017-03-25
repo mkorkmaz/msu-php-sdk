@@ -5,7 +5,7 @@ namespace MerchantSafeUnipay\SDK\Action;
 
 use MerchantSafeUnipay;
 
-class RecurringPlanCard extends ActionAbstract implements ActionInterface
+final class RecurringPlanCard extends ActionAbstract implements ActionInterface
 {
 
     public function add($args)

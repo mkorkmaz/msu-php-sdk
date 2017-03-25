@@ -5,7 +5,7 @@ namespace MerchantSafeUnipay\SDK\Action;
 
 use MerchantSafeUnipay;
 
-class RecurringPayment extends ActionAbstract implements ActionInterface
+final class RecurringPayment extends ActionAbstract implements ActionInterface
 {
     public function edit($args)
     {

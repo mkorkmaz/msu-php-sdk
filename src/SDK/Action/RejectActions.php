@@ -5,7 +5,7 @@ namespace MerchantSafeUnipay\SDK\Action;
 
 use MerchantSafeUnipay;
 
-class RejectActions extends ActionAbstract implements ActionInterface
+final class RejectActions extends ActionAbstract implements ActionInterface
 {
 
     public function rejectTransaction($args)

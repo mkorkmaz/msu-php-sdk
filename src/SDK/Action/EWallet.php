@@ -5,7 +5,7 @@ namespace MerchantSafeUnipay\SDK\Action;
 
 use MerchantSafeUnipay;
 
-class EWallet extends ActionAbstract implements ActionInterface
+final class EWallet extends ActionAbstract implements ActionInterface
 {
     public function addCard($args)
     {

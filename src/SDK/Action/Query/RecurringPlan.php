@@ -6,7 +6,7 @@ namespace MerchantSafeUnipay\SDK\Action\Query;
 use MerchantSafeUnipay;
 use MerchantSafeUnipay\SDK\Action\ActionInterface;
 
-class RecurringPlan extends QueryAbstract implements ActionInterface
+final class RecurringPlan extends QueryAbstract implements ActionInterface
 {
     static protected $queryAction = 'QUERYRECURRINGPLAN';
     static protected $queryParamKeys = [

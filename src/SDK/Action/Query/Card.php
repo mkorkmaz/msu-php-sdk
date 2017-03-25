@@ -6,7 +6,7 @@ namespace MerchantSafeUnipay\SDK\Action\Query;
 use MerchantSafeUnipay;
 use MerchantSafeUnipay\SDK\Action\ActionInterface;
 
-class Card extends QueryAbstract implements ActionInterface
+final class Card extends QueryAbstract implements ActionInterface
 {
     static protected $queryAction = 'QUERYCARD';
     static protected $queryParamKeys = [
