@@ -29,9 +29,7 @@ class MyFunctions extends TestCase
 
     public function shouldFilterDataSuccessfully()
     {
-
         $filteredData = MerchantSafeUnipay\filter(self::$keys, self::$data);
-
         $this->assertCount(3, $filteredData);
         $this->assertArrayHasKey('index_1', $filteredData);
         $this->assertArrayHasKey('index_2', $filteredData);
@@ -39,5 +37,19 @@ class MyFunctions extends TestCase
         $this->assertEquals(1, $filteredData['index_1']);
         $this->assertEquals(2, $filteredData['index_2']);
         $this->assertEquals(4, $filteredData['index_4']);
+    }
+
+
+    /**
+     * @test
+     */
+
+    public function shouldChangeCamelCaseSuccessfully()
+    {
+        $str = 'camelCaseString';
+        $convertedString = MerchantSafeUnipay\convertCamelCase($str, '_');
+        $this->assertEquals('camel_case_string', $convertedString);
+        $convertedString = MerchantSafeUnipay\convertCamelCase($str, ' ');
+        $this->assertEquals('camel case string', $convertedString);
     }
 }

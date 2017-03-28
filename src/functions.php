@@ -13,3 +13,14 @@ function filter(array $filterKeys, array $arrayData)
     }
     return $filteredData;
 }
+
+function convertCamelCase(string $str, string $separator = '_')
+{
+    return preg_replace_callback(
+        '/[A-Z]/',
+        function ($match) use ($separator) {
+            return $separator.strtolower($match[0]);
+        },
+        $str
+    );
+}
