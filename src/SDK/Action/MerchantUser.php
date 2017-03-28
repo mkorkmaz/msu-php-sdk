@@ -13,7 +13,7 @@ final class MerchantUser extends ActionAbstract implements ActionInterface
     static private $editKeys = [
         'USERNAME', 'MERCHANTUSEREMAIL', 'ROLE', 'ISLOCKED', 'MERCHANTUSERPASSWORD', 'CONFIRMPASSWORD'
     ];
-    static private $reInviteKeys = [
+    static private $reinviteKeys = [
         'MERCHANTUSEREMAIL'
     ];
 
@@ -34,7 +34,7 @@ final class MerchantUser extends ActionAbstract implements ActionInterface
     public function reinvite($args)
     {
         $this->action = 'MERCHANTUSERREINVITE';
-        $args = MerchantSafeUnipay\filter(self::$reInviteKeys, $args);
+        $args = MerchantSafeUnipay\filter(self::$reinviteKeys, $args);
         $this->queryParameters = $args;
     }
 }

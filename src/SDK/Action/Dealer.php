@@ -25,7 +25,7 @@ final class Dealer extends ActionAbstract implements ActionInterface
     static private $addMerchantUserDealerKeys = [
         'MERCHANTUSEREMAIL', 'DEALERCODES'
     ];
-    static private $deleteMerchantUserDealerKeys = [
+    static private $removeMerchantUserDealerKeys = [
         'MERCHANTUSEREMAIL', 'DEALERCODES'
     ];
 
@@ -67,7 +67,7 @@ final class Dealer extends ActionAbstract implements ActionInterface
     public function removeMerchantUserDealer($args)
     {
         $this->action = 'MERCHANTUSERDEALERREMOVE';
-        $args = MerchantSafeUnipay\filter(self::$deleteMerchantUserDealerKeys, $args);
+        $args = MerchantSafeUnipay\filter(self::$removeMerchantUserDealerKeys, $args);
         $this->queryParameters = $args;
     }
 }

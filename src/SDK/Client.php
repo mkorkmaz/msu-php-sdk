@@ -105,16 +105,6 @@ class Client
     ];
 
     /**
-     * @var array
-     */
-    private static $possibleResponses = [
-        '00' => 'Approved',
-        '01' => 'Waiting for Approval',
-        '98' => 'General Error',
-        '99' => 'Declined'
-    ];
-
-    /**
      * Client constructor.
      * @param Environment $environment
      * @param GuzzleClient $guzzleClient

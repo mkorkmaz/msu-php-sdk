@@ -56,8 +56,6 @@ class FinancialTransactionsClassTest extends TestCase
         $this->assertArrayHasKey('responseCode', $response['data']);
         $this->assertEquals('00', $response['data']['responseCode']);
 
-
-
         $args = [
             'PGTRANID '=> $response['data']['pgTranId']
         ];
