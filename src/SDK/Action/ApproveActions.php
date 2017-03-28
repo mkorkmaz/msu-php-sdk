@@ -7,25 +7,24 @@ use MerchantSafeUnipay;
 
 final class ApproveActions extends ActionAbstract implements ActionInterface
 {
-
+    static private $approveTransactionKeys = [
+        'PGTRANID'
+    ];
+    static private $approveDealerKeys = [
+        'DEALERCODE'
+    ];
 
     public function approveTransaction($args)
     {
         $this->action = 'APPROVETRANSACTION';
-        $queryParamKeys = [
-            'PGTRANID'
-        ];
-        $args = MerchantSafeUnipay\filter($queryParamKeys, $args);
+        $args = MerchantSafeUnipay\filter(self::$approveTransactionKeys, $args);
         $this->queryParameters = $args;
     }
 
     public function approveDealer($args)
     {
         $this->action = 'DEALERAPPROVE';
-        $queryParamKeys = [
-            'DEALERCODE'
-        ];
-        $args = MerchantSafeUnipay\filter($queryParamKeys, $args);
+        $args = MerchantSafeUnipay\filter(self::$approveDealerKeys, $args);
         $this->queryParameters = $args;
     }
 }

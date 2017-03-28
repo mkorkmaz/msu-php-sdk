@@ -7,44 +7,35 @@ use MerchantSafeUnipay;
 
 final class RecurringPlanCard extends ActionAbstract implements ActionInterface
 {
+    static private $addKeys = [
+        'RECURRINGPLANCODE', 'CARDPAN', 'CARDEXPIRY', 'NAMEONCARD', 'CARDTOKEN', 'CARDSAVENAME'
+    ];
+    static private $queryKeys = [
+        'RECURRINGPLANCODE'
+    ];
+    static private $deleteKeys = [
+        'RECURRINGPLANCODE', 'CARDTOKEN'
+    ];
 
     public function add($args)
     {
         $this->action = 'RECURRINGPLANCARDADD';
-        $queryParamKeys = [
-            'RECURRINGPLANCODE', 'CARDPAN', 'CARDEXPIRY', 'NAMEONCARD', 'CARDTOKEN', 'CARDSAVENAME'
-        ];
-        $args = MerchantSafeUnipay\filter($queryParamKeys, $args);
+        $args = MerchantSafeUnipay\filter(self::$addKeys, $args);
         $this->queryParameters = $args;
     }
 
     public function query($args)
     {
         $this->action = 'QUERYRECURRINGPLANCARD';
-        $queryParamKeys = [
-            'RECURRINGPLANCODE'
-        ];
-        $args = MerchantSafeUnipay\filter($queryParamKeys, $args);
+        $args = MerchantSafeUnipay\filter(self::$queryKeys, $args);
         $this->queryParameters = $args;
     }
 
     public function delete($args)
     {
         $this->action = 'RECURRINGPLANCARDDELETE';
-        $queryParamKeys = [
-            'RECURRINGPLANCODE', 'CARDTOKEN'
-        ];
-        $args = MerchantSafeUnipay\filter($queryParamKeys, $args);
+        $args = MerchantSafeUnipay\filter(self::$deleteKeys, $args);
         $this->queryParameters = $args;
     }
 
-    public function resendLink($args)
-    {
-        $this->action = 'RECURRINGPLANRESENDLINK';
-        $queryParamKeys = [
-            'RECURRINGPLANCODE', 'NOTIFICATIONCHANNELS'
-        ];
-        $args = MerchantSafeUnipay\filter($queryParamKeys, $args);
-        $this->queryParameters = $args;
-    }
 }

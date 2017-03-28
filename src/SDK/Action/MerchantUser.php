@@ -7,33 +7,34 @@ use MerchantSafeUnipay;
 
 final class MerchantUser extends ActionAbstract implements ActionInterface
 {
+    static private $addKeys = [
+        'USERNAME', 'MERCHANTUSEREMAIL', 'ROLE', 'TIMEZONE'
+    ];
+    static private $editKeys = [
+        'USERNAME', 'MERCHANTUSEREMAIL', 'ROLE', 'ISLOCKED', 'MERCHANTUSERPASSWORD', 'CONFIRMPASSWORD'
+    ];
+    static private $reInviteKeys = [
+        'MERCHANTUSEREMAIL'
+    ];
+
     public function add($args)
     {
         $this->action = 'MERCHANTUSERADD';
-        $queryParamKeys = [
-            'USERNAME', 'MERCHANTUSEREMAIL', 'ROLE', 'TIMEZONE'
-        ];
-        $args = MerchantSafeUnipay\filter($queryParamKeys, $args);
+        $args = MerchantSafeUnipay\filter(self::$addKeys, $args);
         $this->queryParameters = $args;
     }
 
     public function edit($args)
     {
         $this->action = 'MERCHANTUSEREDIT';
-        $queryParamKeys = [
-            'USERNAME', 'MERCHANTUSEREMAIL', 'ROLE', 'ISLOCKED', 'MERCHANTUSERPASSWORD', 'CONFIRMPASSWORD'
-        ];
-        $args = MerchantSafeUnipay\filter($queryParamKeys, $args);
+        $args = MerchantSafeUnipay\filter(self::$editKeys, $args);
         $this->queryParameters = $args;
     }
 
     public function reinvite($args)
     {
         $this->action = 'MERCHANTUSERREINVITE';
-        $queryParamKeys = [
-            'MERCHANTUSEREMAIL'
-        ];
-        $args = MerchantSafeUnipay\filter($queryParamKeys, $args);
+        $args = MerchantSafeUnipay\filter(self::$reInviteKeys, $args);
         $this->queryParameters = $args;
     }
 }

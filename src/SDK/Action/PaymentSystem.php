@@ -7,57 +7,59 @@ use MerchantSafeUnipay;
 
 final class PaymentSystem extends ActionAbstract implements ActionInterface
 {
+    static private $addKeys = [
+        'PAYMENTSYSTEM', 'PAYMENTSYSTEMTYPE', 'STATUS', 'PAYMENTSYSTEMMODE', 'APIMERCHANTID', 'APIUSERNAME',
+        'APIPASSWORD', 'GATE3DKEY', 'INTEGRATIONEXTRAFIELD00', 'INTEGRATIONEXTRAFIELD01', 'ISDEFAULT',
+        'SUBMERCHANTCODE'
+    ];
+    static private $editKeys = [
+        'PAYMENTSYSTEMTYPE', 'PAYMENTSYSTEM', 'STATUS', 'PAYMENTSYSTEMMODE', 'APIMERCHANTID', 'APIUSERNAME',
+        'APIPASSWORD', 'GATE3DKEY', 'INTEGRATIONEXTRAFIELD00', 'INTEGRATIONEXTRAFIELD01', 'ISDEFAULT',
+        'SUBMERCHANTCODE'
+    ];
+    static private $readKeys = [
+        'PAYMENTSYSTEMTYPE', 'PAYMENTSYSTEM'
+    ];
+    static private $enableKeys = [
+        'PAYMENTSYSTEMTYPE', 'PAYMENTSYSTEM'
+    ];
+    static private $disableKeys = [
+        'PAYMENTSYSTEMTYPE', 'PAYMENTSYSTEM'
+    ];
+
     public function add($args)
     {
         $this->action = 'PAYMENTSYSTEMADD';
-        $queryParamKeys = [
-            'PAYMENTSYSTEM', 'PAYMENTSYSTEMTYPE', 'STATUS', 'PAYMENTSYSTEMMODE', 'APIMERCHANTID', 'APIUSERNAME',
-            'APIPASSWORD', 'GATE3DKEY', 'INTEGRATIONEXTRAFIELD00', 'INTEGRATIONEXTRAFIELD01', 'ISDEFAULT',
-            'SUBMERCHANTCODE'
-        ];
-        $args = MerchantSafeUnipay\filter($queryParamKeys, $args);
+
+        $args = MerchantSafeUnipay\filter(self::$addKeys, $args);
         $this->queryParameters = $args;
     }
 
     public function edit($args)
     {
         $this->action = 'PAYMENTSYSTEMEDIT';
-        $queryParamKeys = [
-            'PAYMENTSYSTEMTYPE', 'PAYMENTSYSTEM', 'STATUS', 'PAYMENTSYSTEMMODE', 'APIMERCHANTID', 'APIUSERNAME',
-            'APIPASSWORD', 'GATE3DKEY', 'INTEGRATIONEXTRAFIELD00', 'INTEGRATIONEXTRAFIELD01', 'ISDEFAULT',
-            'SUBMERCHANTCODE'
-        ];
-        $args = MerchantSafeUnipay\filter($queryParamKeys, $args);
+        $args = MerchantSafeUnipay\filter(self::$editKeys, $args);
         $this->queryParameters = $args;
     }
 
     public function read($args)
     {
         $this->action = 'PAYMENTSYSTEMREAD';
-        $queryParamKeys = [
-            'PAYMENTSYSTEMTYPE', 'PAYMENTSYSTEM'
-        ];
-        $args = MerchantSafeUnipay\filter($queryParamKeys, $args);
+        $args = MerchantSafeUnipay\filter(self::$readKeys, $args);
         $this->queryParameters = $args;
     }
 
     public function enable($args)
     {
         $this->action = 'PAYMENTSYSTEMENABLE';
-        $queryParamKeys = [
-            'PAYMENTSYSTEMTYPE', 'PAYMENTSYSTEM'
-        ];
-        $args = MerchantSafeUnipay\filter($queryParamKeys, $args);
+        $args = MerchantSafeUnipay\filter(self::$enableKeys, $args);
         $this->queryParameters = $args;
     }
 
     public function disable($args)
     {
         $this->action = 'PAYMENTSYSTEMDISABLE';
-        $queryParamKeys = [
-            'PAYMENTSYSTEMTYPE', 'PAYMENTSYSTEM'
-        ];
-        $args = MerchantSafeUnipay\filter($queryParamKeys, $args);
+        $args = MerchantSafeUnipay\filter(self::$disableKeys, $args);
         $this->queryParameters = $args;
     }
 }

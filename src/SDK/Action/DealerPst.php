@@ -7,33 +7,34 @@ use MerchantSafeUnipay;
 
 final class DealerPst extends ActionAbstract implements ActionInterface
 {
+    static private $addKeys = [
+        'SUBMERCHANTCODE', 'PAYMENTSYSTEMTYPE', 'DEALERCODE'
+    ];
+    static private $editKeys = [
+        'SUBMERCHANTCODE', 'PAYMENTSYSTEMTYPE', 'DEALERCODE'
+    ];
+    static private $deleteKeys = [
+        'DEALERCODE', 'PAYMENTSYSTEMTYPE'
+    ];
+
     public function add($args)
     {
         $this->action = 'DEALERPSTADD';
-        $queryParamKeys = [
-            'SUBMERCHANTCODE', 'PAYMENTSYSTEMTYPE', 'DEALERCODE'
-        ];
-        $args = MerchantSafeUnipay\filter($queryParamKeys, $args);
+        $args = MerchantSafeUnipay\filter(self::$addKeys, $args);
         $this->queryParameters = $args;
     }
 
     public function edit($args)
     {
         $this->action = 'DEALERPSTEDIT';
-        $queryParamKeys = [
-            'SUBMERCHANTCODE', 'PAYMENTSYSTEMTYPE', 'DEALERCODE'
-        ];
-        $args = MerchantSafeUnipay\filter($queryParamKeys, $args);
+        $args = MerchantSafeUnipay\filter(self::$editKeys, $args);
         $this->queryParameters = $args;
     }
 
     public function delete($args)
     {
         $this->action = 'DEALERPSTDELETE';
-        $queryParamKeys = [
-            'DEALERCODE', 'PAYMENTSYSTEMTYPE'
-        ];
-        $args = MerchantSafeUnipay\filter($queryParamKeys, $args);
+        $args = MerchantSafeUnipay\filter(self::$deleteKeys, $args);
         $this->queryParameters = $args;
     }
 }

@@ -7,14 +7,14 @@ use MerchantSafeUnipay;
 
 final class RejectActions extends ActionAbstract implements ActionInterface
 {
+    static private $rejectTransactionKeys = [
+        'MERCHANTPAYMENTID'
+    ];
 
     public function rejectTransaction($args)
     {
         $this->action = 'REJECTTRANSACTION';
-        $queryParamKeys = [
-            'MERCHANTPAYMENTID'
-        ];
-        $args = MerchantSafeUnipay\filter($queryParamKeys, $args);
+        $args = MerchantSafeUnipay\filter(self::$rejectTransactionKeys, $args);
         $this->queryParameters = $args;
     }
 }

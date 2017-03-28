@@ -7,13 +7,14 @@ use MerchantSafeUnipay;
 
 final class RecurringPayment extends ActionAbstract implements ActionInterface
 {
+    static private $editKeys = [
+        'RECURRINGPLANCODE', 'RECURRENCE', 'AMOUNT', 'RECURRINGPAYMENTSTATUS'
+    ];
+
     public function edit($args)
     {
         $this->action = 'RECURRINGPAYMENTEDIT';
-        $queryParamKeys = [
-            'RECURRINGPLANCODE', 'RECURRENCE', 'AMOUNT', 'RECURRINGPAYMENTSTATUS'
-        ];
-        $args = MerchantSafeUnipay\filter($queryParamKeys, $args);
+        $args = MerchantSafeUnipay\filter(self::$editKeys, $args);
         $this->queryParameters = $args;
     }
 }

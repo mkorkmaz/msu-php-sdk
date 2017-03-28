@@ -7,23 +7,24 @@ use MerchantSafeUnipay;
 
 final class PaymentPolicy extends ActionAbstract implements ActionInterface
 {
+    static private $addKeys = [
+        'PAYMENTSYSTEM', 'PPOLICY', 'CURRENCY', 'AMOUNTLIMIT'
+    ];
+    static private $editKeys = [
+        'PAYMENTSYSTEM', 'PPOLICY', 'CURRENCY', 'AMOUNTLIMIT'
+    ];
+
     public function add($args)
     {
         $this->action = 'PAYMENTPOLICYADD';
-        $queryParamKeys = [
-            'PAYMENTSYSTEM', 'PPOLICY', 'CURRENCY', 'AMOUNTLIMIT'
-        ];
-        $args = MerchantSafeUnipay\filter($queryParamKeys, $args);
+        $args = MerchantSafeUnipay\filter(self::$addKeys, $args);
         $this->queryParameters = $args;
     }
 
     public function edit($args)
     {
         $this->action = 'PAYMENTPOLICYEDIT';
-        $queryParamKeys = [
-            'PAYMENTSYSTEM', 'PPOLICY', 'CURRENCY', 'AMOUNTLIMIT'
-        ];
-        $args = MerchantSafeUnipay\filter($queryParamKeys, $args);
+        $args = MerchantSafeUnipay\filter(self::$editKeys, $args);
         $this->queryParameters = $args;
     }
 }

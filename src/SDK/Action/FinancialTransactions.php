@@ -7,66 +7,62 @@ use MerchantSafeUnipay;
 
 final class FinancialTransactions extends ActionAbstract implements ActionInterface
 {
-
+    static private $saleKeys = [
+        'AMOUNT', 'BILLTOADDRESSLINE', 'BILLTOCITY', 'BILLTOCOUNTRY', 'BILLTOPOSTALCODE', 'CAMPAIGNS', 'CARDCVV',
+        'CARDEXPIRY', 'CARDHOLDERPORT', 'CARDPAN', 'CARDSAVENAME', 'CARDTOKEN', 'CURRENCY', 'CUSTOMER', 'CUSTOMEREMAIL',
+        'CUSTOMERIP', 'CUSTOMERNAME', 'CUSTOMERPHONE', 'CUSTOMERUSERAGENT', 'DEALERCODE', 'EXTRA', 'FORGROUP',
+        'INSTALLMENTS', 'ISREFUNDABLE', 'MERCHANTPAYMENTID', 'NAMEONCARD', 'PAYMENTSYSTEM', 'POINTS', 'SAVECARD',
+        'SHIPTOADDRESSLINE', 'SHIPTOCITY', 'SHIPTOCOUNTRY', 'SHIPTOPOSTALCODE', 'THREATMETRIXSESSIONID',
+        'TMXSESSIONQUERYINPUT',
+    ];
+    static private $preAuthKeys = [
+        'AMOUNT', 'BILLTOADDRESSLINE', 'BILLTOCITY', 'BILLTOCOUNTRY', 'BILLTOPOSTALCODE', 'CARDCVV', 'CARDEXPIRY',
+        'CARDHOLDERPORT', 'CARDPAN', 'CARDSAVENAME', 'CARDTOKEN', 'CURRENCY', 'CUSTOMER', 'CUSTOMEREMAIL', 'CUSTOMERIP',
+        'CUSTOMERNAME', 'CUSTOMERPHONE', 'CUSTOMERUSERAGENT', 'DEALERCODE', 'EXTRA', 'FORGROUP', 'INSTALLMENTS',
+        'ISREFUNDABLE', 'MERCHANTPAYMENTID', 'NAMEONCARD', 'PAYMENTSYSTEM', 'SAVECARD', 'SHIPTOADDRESSLINE',
+        'SHIPTOCITY', 'SHIPTOCOUNTRY', 'SHIPTOPOSTALCODE', 'THREATMETRIXSESSIONID', 'TMXSESSIONQUERYINPUT',
+    ];
+    static private $postAuthKeys = [
+        'MERCHANTPAYMENTID', 'PGTRANID', 'AMOUNT'
+    ];
+    static private $voidKeys = [
+        'MERCHANTPAYMENTID', 'PGTRANID',
+    ];
+    static private $refundKeys = [
+        'AMOUNT', 'PGTRANID', 'CURRENCY', 'MERCHANTPAYMENTID', 'SUBSTATUS'
+    ];
     public function sale($args)
     {
         $this->action = 'SALE';
-        $queryParamKeys = [
-            'MERCHANTPAYMENTID', 'CUSTOMER', 'AMOUNT', 'CURRENCY', 'CUSTOMEREMAIL', 'CUSTOMERNAME', 'CUSTOMERIP',
-            'CARDHOLDERPORT', 'CUSTOMERUSERAGENT', 'CARDTOKEN', 'CARDPAN', 'CARDEXPIRY',
-            'NAMEONCARD', 'CARDCVV', 'CUSTOMERPHONE', 'SAVECARD', 'ISREFUNDABLE', 'CARDSAVENAME',
-            'INSTALLMENTS', 'PAYMENTSYSTEM', 'POINTS', 'CAMPAIGNS', 'BILLTOADDRESSLINE', 'BILLTOCITY',
-            'BILLTOPOSTALCODE', 'BILLTOCOUNTRY', 'SHIPTOADDRESSLINE', 'SHIPTOCITY', 'SHIPTOPOSTALCODE',
-            'SHIPTOCOUNTRY', 'THREATMETRIXSESSIONID', 'TMXSESSIONQUERYINPUT', 'EXTRA',
-            'DEALERCODE', 'FORGROUP'
-        ];
-        $args = MerchantSafeUnipay\filter($queryParamKeys, $args);
+        $args = MerchantSafeUnipay\filter(self::$saleKeys, $args);
         $this->queryParameters = array_merge($this->merchantParams, $args);
     }
 
     public function preAuth($args)
     {
         $this->action = 'PREAUTH';
-        $queryParamKeys = [
-            'MERCHANTPAYMENTID', 'CUSTOMER', 'CARDHOLDERPORT', 'CARDTOKEN', 'AMOUNT', 'CURRENCY', 'CARDPAN',
-            'CARDEXPIRY', 'NAMEONCARD', 'CUSTOMEREMAIL', 'CUSTOMERNAME', 'CUSTOMERPHONE', 'CUSTOMERIP',
-            'CUSTOMERUSERAGENT', 'INSTALLMENTS', 'PAYMENTSYSTEM','CARDCVV', 'SAVECARD', 'ISREFUNDABLE',
-            'CARDSAVENAME', 'BILLTOADDRESSLINE', 'BILLTOCITY', 'BILLTOPOSTALCODE', 'BILLTOCOUNTRY',
-            'SHIPTOADDRESSLINE', 'SHIPTOCITY', 'SHIPTOPOSTALCODE', 'SHIPTOCOUNTRY', 'THREATMETRIXSESSIONID',
-            'TMXSESSIONQUERYINPUT', 'EXTRA', 'DEALERCODE', 'FORGROUP'
-
-        ];
-        $args = MerchantSafeUnipay\filter($queryParamKeys, $args);
+        $args = MerchantSafeUnipay\filter(self::$preAuthKeys, $args);
         $this->queryParameters = $args;
     }
 
     public function postAuth($args)
     {
         $this->action = 'POSTAUTH';
-        $queryParamKeys = [
-            'MERCHANTPAYMENTID', 'PGTRANID', 'AMOUNT'
-        ];
-        $args = MerchantSafeUnipay\filter($queryParamKeys, $args);
+        $args = MerchantSafeUnipay\filter(self::$postAuthKeys, $args);
         $this->queryParameters = $args;
     }
 
     public function void($args)
     {
         $this->action = 'VOID';
-        $queryParamKeys = [
-            'MERCHANTPAYMENTID', 'PGTRANID',
-        ];
-        $args = MerchantSafeUnipay\filter($queryParamKeys, $args);
+        $args = MerchantSafeUnipay\filter(self::$voidKeys, $args);
         $this->queryParameters = $args;
     }
 
     public function refund($args)
     {
         $this->action = 'REFUND';
-        $queryParamKeys = [
-            'AMOUNT', 'PGTRANID', 'CURRENCY', 'MERCHANTPAYMENTID', 'SUBSTATUS'
-        ];
-        $args = MerchantSafeUnipay\filter($queryParamKeys, $args);
+        $args = MerchantSafeUnipay\filter(self::$refundKeys, $args);
         $this->queryParameters = $args;
     }
 }

@@ -7,33 +7,34 @@ use MerchantSafeUnipay;
 
 final class DealerType extends ActionAbstract implements ActionInterface
 {
+    static private $addKeys = [
+        'DEALERTYPENAME', 'DESCRIPTIONREQUIRED', 'MAXINSTALLMENTCOUNT'
+    ];
+    static private $editKeys = [
+        'DEALERTYPENAME', 'DESCRIPTIONREQUIRED', 'MAXINSTALLMENTCOUNT'
+    ];
+    static private $deleteKeys = [
+        'DEALERTYPENAME'
+    ];
+
     public function add($args)
     {
         $this->action = 'DEALERTYPEADD';
-        $queryParamKeys = [
-            'DEALERTYPENAME', 'DESCRIPTIONREQUIRED', 'MAXINSTALLMENTCOUNT'
-        ];
-        $args = MerchantSafeUnipay\filter($queryParamKeys, $args);
+        $args = MerchantSafeUnipay\filter(self::$addKeys, $args);
         $this->queryParameters = $args;
     }
 
     public function edit($args)
     {
         $this->action = 'DEALERTYPEEDIT';
-        $queryParamKeys = [
-            'DEALERTYPENAME', 'DESCRIPTIONREQUIRED', 'MAXINSTALLMENTCOUNT'
-        ];
-        $args = MerchantSafeUnipay\filter($queryParamKeys, $args);
+        $args = MerchantSafeUnipay\filter(self::$editKeys, $args);
         $this->queryParameters = $args;
     }
 
     public function delete($args)
     {
         $this->action = 'DEALERTYPEDELETE';
-        $queryParamKeys = [
-            'DEALERTYPENAME'
-        ];
-        $args = MerchantSafeUnipay\filter($queryParamKeys, $args);
+        $args = MerchantSafeUnipay\filter(self::$deleteKeys, $args);
         $this->queryParameters = $args;
     }
 }

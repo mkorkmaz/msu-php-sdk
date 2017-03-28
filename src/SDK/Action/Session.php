@@ -7,27 +7,26 @@ use MerchantSafeUnipay;
 
 final class Session extends ActionAbstract implements ActionInterface
 {
+    static private $sessionTokenKeys = [
+        'CUSTOMER', 'SESSIONTYPE', 'RETURNURL', 'MERCHANTPAYMENTID', 'AMOUNT', 'CURRENCY', 'CUSTOMEREMAIL',
+        'CUSTOMERNAME', 'CUSTOMERPHONE', 'CUSTOMERIP', 'CUSTOMERUSERAGENT', 'SESSIONEXPIRY', 'LANGUAGE',
+        'CAMPAIGNCODE', 'ORDERITEMS', 'TMXSESSIONQUERYINPUT', 'EXTRA', 'MAXINSTALLMENTCOUNT', 'SPLITPAYMENTTYPE'
+    ];
+    static private $sessionExtendKeys = [
+        'TOKEN', 'SESSIONEXPIRY'
+    ];
 
     public function sessionToken($args)
     {
         $this->action = 'SESSIONTOKEN';
-        $queryParamKeys = [
-            'CUSTOMER', 'SESSIONTYPE', 'RETURNURL', 'MERCHANTPAYMENTID', 'AMOUNT', 'CURRENCY', 'CUSTOMEREMAIL',
-            'CUSTOMERNAME', 'CUSTOMERPHONE', 'CUSTOMERIP', 'CUSTOMERUSERAGENT', 'SESSIONEXPIRY', 'LANGUAGE',
-            'CAMPAIGNCODE', 'ORDERITEMS', 'TMXSESSIONQUERYINPUT', 'EXTRA', 'MAXINSTALLMENTCOUNT', 'SPLITPAYMENTTYPE'
-        ];
-        $args = MerchantSafeUnipay\filter($queryParamKeys, $args);
+        $args = MerchantSafeUnipay\filter(self::$sessionTokenKeys, $args);
         $this->queryParameters = $args;
     }
 
-
     public function sessionExtend($args)
     {
-        $this->action = 'SESSIONTOKEN';
-        $queryParamKeys = [
-            'SESSIONTOKEN', 'TOKEN', 'SESSIONEXPIRY'
-        ];
-        $args = MerchantSafeUnipay\filter($queryParamKeys, $args);
+        $this->action = 'SESSIONEXTEND';
+        $args = MerchantSafeUnipay\filter(self::$sessionExtendKeys, $args);
         $this->queryParameters = $args;
     }
 }

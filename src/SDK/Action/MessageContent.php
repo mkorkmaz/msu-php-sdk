@@ -7,34 +7,34 @@ use MerchantSafeUnipay;
 
 final class MessageContent extends ActionAbstract implements ActionInterface
 {
+    static private $addKeys = [
+        'TITLE', 'CONTENT', 'MESSAGECONTENTTYPE', 'LANGUAGE'
+    ];
+    static private $editKeys = [
+        'MESSAGECONTENTID', 'TITLE', 'CONTENT', 'MESSAGECONTENTTYPE', 'LANGUAGE'
+    ];
+    static private $deleteKeys = [
+        'MESSAGECONTENTID'
+    ];
+
     public function add($args)
     {
         $this->action = 'MESSAGECONTENTADD';
-        $queryParamKeys = [
-            'TITLE', 'CONTENT', 'MESSAGECONTENTTYPE', 'LANGUAGE'
-        ];
-        $args = MerchantSafeUnipay\filter($queryParamKeys, $args);
+        $args = MerchantSafeUnipay\filter(self::$addKeys, $args);
         $this->queryParameters = $args;
     }
 
     public function edit($args)
     {
         $this->action = 'MESSAGECONTENTEDIT';
-        $queryParamKeys = [
-            'MESSAGECONTENTID', 'TITLE', 'CONTENT', 'MESSAGECONTENTTYPE', 'LANGUAGE'
-        ];
-        $args = MerchantSafeUnipay\filter($queryParamKeys, $args);
+        $args = MerchantSafeUnipay\filter(self::$editKeys, $args);
         $this->queryParameters = $args;
     }
-
 
     public function delete($args)
     {
         $this->action = 'MESSAGECONTENTDELETE';
-        $queryParamKeys = [
-            'MESSAGECONTENTID'
-        ];
-        $args = MerchantSafeUnipay\filter($queryParamKeys, $args);
+        $args = MerchantSafeUnipay\filter(self::$deleteKeys, $args);
         $this->queryParameters = $args;
     }
 }

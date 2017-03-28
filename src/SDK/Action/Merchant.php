@@ -7,24 +7,24 @@ use MerchantSafeUnipay;
 
 final class Merchant extends ActionAbstract implements ActionInterface
 {
+    static private $enableKeys = [
+        'MERCHANTBUSINESSID'
+    ];
+    static private $disableKeys = [
+        'MERCHANTBUSINESSID'
+    ];
 
     public function enable($args)
     {
         $this->action = 'MERCHANTENABLE';
-        $queryParamKeys = [
-            'MERCHANTBUSINESSID'
-        ];
-        $args = MerchantSafeUnipay\filter($queryParamKeys, $args);
+        $args = MerchantSafeUnipay\filter(self::$enableKeys, $args);
         $this->queryParameters = $args;
     }
 
     public function disable($args)
     {
         $this->action = 'MERCHANTDISABLE';
-        $queryParamKeys = [
-            'MERCHANTBUSINESSID'
-        ];
-        $args = MerchantSafeUnipay\filter($queryParamKeys, $args);
+        $args = MerchantSafeUnipay\filter(self::$disableKeys, $args);
         $this->queryParameters = $args;
     }
 }

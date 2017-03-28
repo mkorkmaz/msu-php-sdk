@@ -7,35 +7,35 @@ use MerchantSafeUnipay;
 
 final class EWallet extends ActionAbstract implements ActionInterface
 {
+    static private $addCardKeys = [
+        'CUSTOMER', 'NAMEONCARD', 'CARDPAN', 'CARDEXPIRY', 'CARDSAVENAME', 'CUSTOMERNAME', 'CUSTOMEREMAIL',
+        'CUSTOMERPHONE'
+    ];
+    static private $editCardKeys = [
+        'CARDTOKEN', 'CARDEXPIRY', 'NAMEONCARD', 'CARDSAVENAME'
+    ];
+    static private $deleteCardKeys = [
+        'CARDTOKEN'
+    ];
+
     public function addCard($args)
     {
         $this->action = 'EWALLETADDCARD';
-        $queryParamKeys = [
-            'CUSTOMER', 'NAMEONCARD', 'CARDPAN', 'CARDEXPIRY', 'CARDSAVENAME', 'CUSTOMERNAME', 'CUSTOMEREMAIL',
-            'CUSTOMERPHONE'
-        ];
-        $args = MerchantSafeUnipay\filter($queryParamKeys, $args);
+        $args = MerchantSafeUnipay\filter(self::$addCardKeys, $args);
         $this->queryParameters = $args;
     }
 
     public function editCard($args)
     {
         $this->action = 'EWALLETEDITCARD';
-        $queryParamKeys = [
-            'CARDTOKEN', 'CARDEXPIRY', 'NAMEONCARD', 'CARDSAVENAME'
-        ];
-        $args = MerchantSafeUnipay\filter($queryParamKeys, $args);
+        $args = MerchantSafeUnipay\filter(self::$editCardKeys, $args);
         $this->queryParameters = $args;
     }
-
 
     public function deleteCard($args)
     {
         $this->action = 'EWALLETDELETECARD';
-        $queryParamKeys = [
-            'CARDTOKEN'
-        ];
-        $args = MerchantSafeUnipay\filter($queryParamKeys, $args);
+        $args = MerchantSafeUnipay\filter(self::$deleteCardKeys, $args);
         $this->queryParameters = $args;
     }
 }
