@@ -37,5 +37,4 @@ final class RecurringPlanCard extends ActionAbstract implements ActionInterface
         $args = MerchantSafeUnipay\filter(self::$deleteKeys, $args);
         $this->queryParameters = $args;
     }
-
 }

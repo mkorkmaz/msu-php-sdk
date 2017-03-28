@@ -18,7 +18,4 @@ abstract class QueryAbstract extends ActionAbstract
     {
         return static::$queryAction;
     }
-    public function processArguments()
-    {
-    }
 }
