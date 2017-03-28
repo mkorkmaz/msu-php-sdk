@@ -39,9 +39,6 @@ final class RecurringPlan extends ActionAbstract implements ActionInterface
     public function delete($args)
     {
         $this->action = 'RECURRINGPLANDELETE';
-        $queryParamKeys = [
-
-        ];
         $args = MerchantSafeUnipay\filter(self::$deleteKeys, $args);
         $this->queryParameters = $args;
     }
