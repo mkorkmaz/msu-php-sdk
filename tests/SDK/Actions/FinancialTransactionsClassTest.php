@@ -129,7 +129,7 @@ class FinancialTransactionsClassTest extends TestCase
             'CARDCVV' => '000'
         ];
         $sResponse = $this->client->financialTransactions('sale', $args);
-        $this->assertArrayHasKey('pgTranRefId', $sResponse['data']);
+        $this->assertArrayHasKey('pgTranId', $sResponse['data']);
         $this->assertArrayHasKey('responseCode', $sResponse['data']);
         $this->assertEquals('00', $sResponse['data']['responseCode'], 'Sale should have been successful');
         $args = [
