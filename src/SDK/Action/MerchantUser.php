@@ -21,20 +21,20 @@ final class MerchantUser extends ActionAbstract implements ActionInterface
     {
         $this->action = 'MERCHANTUSERADD';
         $args = MerchantSafeUnipay\filter(self::$addKeys, $args);
-        $this->queryParameters = $args;
+        $this->queryParameters = array_merge($this->merchantParams, $args);
     }
 
     public function edit($args)
     {
         $this->action = 'MERCHANTUSEREDIT';
         $args = MerchantSafeUnipay\filter(self::$editKeys, $args);
-        $this->queryParameters = $args;
+        $this->queryParameters = array_merge($this->merchantParams, $args);
     }
 
     public function reinvite($args)
     {
         $this->action = 'MERCHANTUSERREINVITE';
         $args = MerchantSafeUnipay\filter(self::$reinviteKeys, $args);
-        $this->queryParameters = $args;
+        $this->queryParameters = array_merge($this->merchantParams, $args);
     }
 }

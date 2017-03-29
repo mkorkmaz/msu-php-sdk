@@ -15,6 +15,6 @@ final class RejectActions extends ActionAbstract implements ActionInterface
     {
         $this->action = 'REJECTTRANSACTION';
         $args = MerchantSafeUnipay\filter(self::$rejectTransactionKeys, $args);
-        $this->queryParameters = $args;
+        $this->queryParameters = array_merge($this->merchantParams, $args);
     }
 }

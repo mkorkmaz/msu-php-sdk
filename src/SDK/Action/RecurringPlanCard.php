@@ -21,20 +21,20 @@ final class RecurringPlanCard extends ActionAbstract implements ActionInterface
     {
         $this->action = 'RECURRINGPLANCARDADD';
         $args = MerchantSafeUnipay\filter(self::$addKeys, $args);
-        $this->queryParameters = $args;
+        $this->queryParameters = array_merge($this->merchantParams, $args);
     }
 
     public function query($args)
     {
         $this->action = 'QUERYRECURRINGPLANCARD';
         $args = MerchantSafeUnipay\filter(self::$queryKeys, $args);
-        $this->queryParameters = $args;
+        $this->queryParameters = array_merge($this->merchantParams, $args);
     }
 
     public function delete($args)
     {
         $this->action = 'RECURRINGPLANCARDDELETE';
         $args = MerchantSafeUnipay\filter(self::$deleteKeys, $args);
-        $this->queryParameters = $args;
+        $this->queryParameters = array_merge($this->merchantParams, $args);
     }
 }

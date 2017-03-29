@@ -40,34 +40,34 @@ final class Dealer extends ActionAbstract implements ActionInterface
     {
         $this->action = 'DEALEREDIT';
         $args = MerchantSafeUnipay\filter(self::$editKeys, $args);
-        $this->queryParameters = $args;
+        $this->queryParameters = array_merge($this->merchantParams, $args);
     }
 
     public function enable($args)
     {
         $this->action = 'DEALERENABLE';
         $args = MerchantSafeUnipay\filter(self::$enableKeys, $args);
-        $this->queryParameters = $args;
+        $this->queryParameters = array_merge($this->merchantParams, $args);
     }
 
     public function disable($args)
     {
         $this->action = 'DEALERDISABLE';
         $args = MerchantSafeUnipay\filter(self::$disableKeys, $args);
-        $this->queryParameters = $args;
+        $this->queryParameters = array_merge($this->merchantParams, $args);
     }
 
     public function addMerchantUserDealer($args)
     {
         $this->action = 'MERCHANTUSERDEALERADD';
         $args = MerchantSafeUnipay\filter(self::$addMerchantUserDealerKeys, $args);
-        $this->queryParameters = $args;
+        $this->queryParameters = array_merge($this->merchantParams, $args);
     }
 
     public function removeMerchantUserDealer($args)
     {
         $this->action = 'MERCHANTUSERDEALERREMOVE';
         $args = MerchantSafeUnipay\filter(self::$removeMerchantUserDealerKeys, $args);
-        $this->queryParameters = $args;
+        $this->queryParameters = array_merge($this->merchantParams, $args);
     }
 }

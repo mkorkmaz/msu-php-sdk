@@ -22,20 +22,20 @@ final class PayByLinkPayment extends ActionAbstract implements ActionInterface
     {
         $this->action = 'PAYBYLINKPAYMENT';
         $args = MerchantSafeUnipay\filter(self::$addKeys, $args);
-        $this->queryParameters = $args;
+        $this->queryParameters = array_merge($this->merchantParams, $args);
     }
 
     public function cancel($args)
     {
         $this->action = 'PAYBYLINKPAYMENTCANCEL';
         $args = MerchantSafeUnipay\filter(self::$cancelKeys, $args);
-        $this->queryParameters = $args;
+        $this->queryParameters = array_merge($this->merchantParams, $args);
     }
 
     public function resend($args)
     {
         $this->action = 'PAYBYLINKPAYMENTRESEND';
         $args = MerchantSafeUnipay\filter(self::$resendKeys, $args);
-        $this->queryParameters = $args;
+        $this->queryParameters = array_merge($this->merchantParams, $args);
     }
 }

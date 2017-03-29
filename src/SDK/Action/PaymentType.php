@@ -26,27 +26,27 @@ final class PaymentType extends ActionAbstract implements ActionInterface
     {
         $this->action = 'PAYMENTTYPEADD';
         $args = MerchantSafeUnipay\filter(self::$addKeys, $args);
-        $this->queryParameters = $args;
+        $this->queryParameters = array_merge($this->merchantParams, $args);
     }
 
     public function edit($args)
     {
         $this->action = 'PAYMENTTYPEEDIT';
         $args = MerchantSafeUnipay\filter(self::$editKeys, $args);
-        $this->queryParameters = $args;
+        $this->queryParameters = array_merge($this->merchantParams, $args);
     }
 
     public function enable($args)
     {
         $this->action = 'PAYMENTTYPEENABLE';
         $args = MerchantSafeUnipay\filter(self::$enableKeys, $args);
-        $this->queryParameters = $args;
+        $this->queryParameters = array_merge($this->merchantParams, $args);
     }
 
     public function disable($args)
     {
         $this->action = 'PAYMENTTYPEDISABLE';
         $args = MerchantSafeUnipay\filter(self::$disableKeys, $args);
-        $this->queryParameters = $args;
+        $this->queryParameters = array_merge($this->merchantParams, $args);
     }
 }

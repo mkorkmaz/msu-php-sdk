@@ -21,20 +21,20 @@ final class MessageContent extends ActionAbstract implements ActionInterface
     {
         $this->action = 'MESSAGECONTENTADD';
         $args = MerchantSafeUnipay\filter(self::$addKeys, $args);
-        $this->queryParameters = $args;
+        $this->queryParameters = array_merge($this->merchantParams, $args);
     }
 
     public function edit($args)
     {
         $this->action = 'MESSAGECONTENTEDIT';
         $args = MerchantSafeUnipay\filter(self::$editKeys, $args);
-        $this->queryParameters = $args;
+        $this->queryParameters = array_merge($this->merchantParams, $args);
     }
 
     public function delete($args)
     {
         $this->action = 'MESSAGECONTENTDELETE';
         $args = MerchantSafeUnipay\filter(self::$deleteKeys, $args);
-        $this->queryParameters = $args;
+        $this->queryParameters = array_merge($this->merchantParams, $args);
     }
 }

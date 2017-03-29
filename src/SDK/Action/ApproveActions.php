@@ -18,13 +18,13 @@ final class ApproveActions extends ActionAbstract implements ActionInterface
     {
         $this->action = 'APPROVETRANSACTION';
         $args = MerchantSafeUnipay\filter(self::$approveTransactionKeys, $args);
-        $this->queryParameters = $args;
+        $this->queryParameters = array_merge($this->merchantParams, $args);
     }
 
     public function approveDealer($args)
     {
         $this->action = 'DEALERAPPROVE';
         $args = MerchantSafeUnipay\filter(self::$approveDealerKeys, $args);
-        $this->queryParameters = $args;
+        $this->queryParameters = array_merge($this->merchantParams, $args);
     }
 }

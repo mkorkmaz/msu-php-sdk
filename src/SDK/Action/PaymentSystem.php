@@ -30,36 +30,35 @@ final class PaymentSystem extends ActionAbstract implements ActionInterface
     public function add($args)
     {
         $this->action = 'PAYMENTSYSTEMADD';
-
         $args = MerchantSafeUnipay\filter(self::$addKeys, $args);
-        $this->queryParameters = $args;
+        $this->queryParameters = array_merge($this->merchantParams, $args);
     }
 
     public function edit($args)
     {
         $this->action = 'PAYMENTSYSTEMEDIT';
         $args = MerchantSafeUnipay\filter(self::$editKeys, $args);
-        $this->queryParameters = $args;
+        $this->queryParameters = array_merge($this->merchantParams, $args);
     }
 
     public function read($args)
     {
         $this->action = 'PAYMENTSYSTEMREAD';
         $args = MerchantSafeUnipay\filter(self::$readKeys, $args);
-        $this->queryParameters = $args;
+        $this->queryParameters = array_merge($this->merchantParams, $args);
     }
 
     public function enable($args)
     {
         $this->action = 'PAYMENTSYSTEMENABLE';
         $args = MerchantSafeUnipay\filter(self::$enableKeys, $args);
-        $this->queryParameters = $args;
+        $this->queryParameters = array_merge($this->merchantParams, $args);
     }
 
     public function disable($args)
     {
         $this->action = 'PAYMENTSYSTEMDISABLE';
         $args = MerchantSafeUnipay\filter(self::$disableKeys, $args);
-        $this->queryParameters = $args;
+        $this->queryParameters = array_merge($this->merchantParams, $args);
     }
 }

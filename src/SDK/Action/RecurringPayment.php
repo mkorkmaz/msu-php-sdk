@@ -15,6 +15,6 @@ final class RecurringPayment extends ActionAbstract implements ActionInterface
     {
         $this->action = 'RECURRINGPAYMENTEDIT';
         $args = MerchantSafeUnipay\filter(self::$editKeys, $args);
-        $this->queryParameters = $args;
+        $this->queryParameters = array_merge($this->merchantParams, $args);
     }
 }

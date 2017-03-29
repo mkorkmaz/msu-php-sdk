@@ -18,13 +18,13 @@ final class Merchant extends ActionAbstract implements ActionInterface
     {
         $this->action = 'MERCHANTENABLE';
         $args = MerchantSafeUnipay\filter(self::$enableKeys, $args);
-        $this->queryParameters = $args;
+        $this->queryParameters = array_merge($this->merchantParams, $args);
     }
 
     public function disable($args)
     {
         $this->action = 'MERCHANTDISABLE';
         $args = MerchantSafeUnipay\filter(self::$disableKeys, $args);
-        $this->queryParameters = $args;
+        $this->queryParameters = array_merge($this->merchantParams, $args);
     }
 }

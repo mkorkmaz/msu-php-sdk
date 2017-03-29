@@ -20,13 +20,13 @@ final class Session extends ActionAbstract implements ActionInterface
     {
         $this->action = 'SESSIONTOKEN';
         $args = MerchantSafeUnipay\filter(self::$sessionTokenKeys, $args);
-        $this->queryParameters = $args;
+        $this->queryParameters = array_merge($this->merchantParams, $args);
     }
 
     public function sessionExtend($args)
     {
         $this->action = 'SESSIONEXTEND';
         $args = MerchantSafeUnipay\filter(self::$sessionExtendKeys, $args);
-        $this->queryParameters = $args;
+        $this->queryParameters = array_merge($this->merchantParams, $args);
     }
 }

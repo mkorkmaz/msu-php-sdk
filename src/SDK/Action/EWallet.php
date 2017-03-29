@@ -22,20 +22,20 @@ final class EWallet extends ActionAbstract implements ActionInterface
     {
         $this->action = 'EWALLETADDCARD';
         $args = MerchantSafeUnipay\filter(self::$addCardKeys, $args);
-        $this->queryParameters = $args;
+        $this->queryParameters = array_merge($this->merchantParams, $args);
     }
 
     public function editCard($args)
     {
         $this->action = 'EWALLETEDITCARD';
         $args = MerchantSafeUnipay\filter(self::$editCardKeys, $args);
-        $this->queryParameters = $args;
+        $this->queryParameters = array_merge($this->merchantParams, $args);
     }
 
     public function deleteCard($args)
     {
         $this->action = 'EWALLETDELETECARD';
         $args = MerchantSafeUnipay\filter(self::$deleteCardKeys, $args);
-        $this->queryParameters = $args;
+        $this->queryParameters = array_merge($this->merchantParams, $args);
     }
 }

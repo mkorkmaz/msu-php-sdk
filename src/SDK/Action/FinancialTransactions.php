@@ -42,27 +42,27 @@ final class FinancialTransactions extends ActionAbstract implements ActionInterf
     {
         $this->action = 'PREAUTH';
         $args = MerchantSafeUnipay\filter(self::$preAuthKeys, $args);
-        $this->queryParameters = $args;
+        $this->queryParameters = array_merge($this->merchantParams, $args);
     }
 
     public function postAuth($args)
     {
         $this->action = 'POSTAUTH';
         $args = MerchantSafeUnipay\filter(self::$postAuthKeys, $args);
-        $this->queryParameters = $args;
+        $this->queryParameters = array_merge($this->merchantParams, $args);
     }
 
     public function void($args)
     {
         $this->action = 'VOID';
         $args = MerchantSafeUnipay\filter(self::$voidKeys, $args);
-        $this->queryParameters = $args;
+        $this->queryParameters = array_merge($this->merchantParams, $args);
     }
 
     public function refund($args)
     {
         $this->action = 'REFUND';
         $args = MerchantSafeUnipay\filter(self::$refundKeys, $args);
-        $this->queryParameters = $args;
+        $this->queryParameters = array_merge($this->merchantParams, $args);
     }
 }
