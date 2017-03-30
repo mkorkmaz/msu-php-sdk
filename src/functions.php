@@ -16,13 +16,13 @@ function filter(array $filterKeys, array $arrayData)
 
 function convertCamelCase(string $str, string $separator = '_')
 {
-    return preg_replace_callback(
+    return trim(preg_replace_callback(
         '/[A-Z]/',
         function ($match) use ($separator) {
             return $separator.strtolower($match[0]);
         },
         $str
-    );
+    ), $separator);
 }
 
 function convertSnakeCase(string $str)
