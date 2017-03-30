@@ -15,6 +15,10 @@ You need [Composer](https://getcomposer.org/) to install MerchantSafe Unipay PHP
 composer require mkorkmaz/msu-php-sdk
 ```
 
+## Documentation
+
+You can see detailed documentaiton at [https://mkorkmaz.github.io/msu-php-sdk-doc/](https://mkorkmaz.github.io/msu-php-sdk-doc/)
+
 ## Basic Usage
 
 ```php
