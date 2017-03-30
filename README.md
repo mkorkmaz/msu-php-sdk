@@ -18,7 +18,7 @@ composer require mkorkmaz/msu-php-sdk
 ## Basic Usage
 
 ```php
-$env = 'test'; // Options: 'test', 'production'
+$env = 'https://test.merchantsafeunipay.com/msu/api/v2'; 
 $merchant = 'COMPANYNAME'; // Given by Asseco
 $merchantUser = 'apiuser@companyname.com'; // Created on MSU Panel
 $merchantPassword = 'u+B56?mcjh23'; // Created on MSU Panel

@@ -24,3 +24,8 @@ function convertCamelCase(string $str, string $separator = '_')
         $str
     );
 }
+
+function convertSnakeCase(string $str)
+{
+    return str_replace(' ','', ucwords(str_replace('_', ' ', $str)));
+}

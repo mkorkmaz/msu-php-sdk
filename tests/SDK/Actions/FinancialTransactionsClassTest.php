@@ -24,7 +24,7 @@ class FinancialTransactionsClassTest extends TestCase
         }
         $this->client = ClientBuilder::create()
             ->setEnvironment(
-                'test',
+                'https://test.merchantsafeunipay.com/msu/api/v2',
                 $MSUPHPSDK_M,
                 $MSUPHPSDK_U,
                 $MSUPHPSDK_P

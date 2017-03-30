@@ -16,7 +16,6 @@ final class ClientBuilder
     private $environment;
     private $logger;
 
-    static private $validEnvironments = ['Test', 'Production'];
 
     public static function create()
     {
@@ -24,19 +23,12 @@ final class ClientBuilder
     }
 
     public function setEnvironment(
-        string $environment,
+        string $apiUrl,
         string $merchant,
         string $merchantUser,
         string $merchantPassword
     ) {
-    
-        $environment = ucfirst(strtolower($environment));
-        if (!in_array($environment, self::$validEnvironments, true)) {
-            $message = sprintf('%s is not valid environment.', $environment);
-            throw new InvalidArgumentException($message);
-        }
-        $environmentClass = "\\MerchantSafeUnipay\\SDK\\Environment\\{$environment}";
-        $this->environment = new $environmentClass($merchant, $merchantUser, $merchantPassword);
+        $this->environment = new Environment($apiUrl, $merchant, $merchantUser, $merchantPassword);
         return $this;
     }
 

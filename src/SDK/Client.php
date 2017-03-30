@@ -11,7 +11,8 @@
 namespace MerchantSafeUnipay\SDK;
 
 use GuzzleHttp\Client as GuzzleClient;
-use MerchantSafeUnipay\SDK\Environment\EnvironmentInterface as Environment;
+use function MerchantSafeUnipay\convertSnakeCase;
+use MerchantSafeUnipay\SDK\Environment;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LoggerInterface;
 use MerchantSafeUnipay\SDK\Action\ActionInterface;
@@ -146,7 +147,7 @@ class Client
     private function getCallAction(string $name, array $arguments)
     {
         $namespace = '\\MerchantSafeUnipay\\SDK\\Action';
-        $actionClass =  $namespace . '\\'. ucfirst($name);
+        $actionClass =  $namespace . '\\'. convertSnakeCase($name);
         if (!in_array($name, self::$validActions, true) || !class_exists($actionClass)) {
             $message = sprintf('%s is not valid MerchantSafeUnipay API action.', $name);
             throw new BadMethodCallException($message);
@@ -157,7 +158,7 @@ class Client
     {
         $name = str_replace(' ', '', ucwords(str_replace('_', '', $name)));
         $namespace = '\\MerchantSafeUnipay\\SDK\\Action\\Query';
-        $actionClass =  $namespace . '\\'. ucfirst($name);
+        $actionClass =  $namespace . '\\'. convertSnakeCase($name);
         if (!in_array($name, self::$validQueryActions, true) || !class_exists($actionClass)) {
             $message = sprintf('%s is not valid MerchantSafeUnipay API query action.', $name);
             throw new BadMethodCallException($message);
@@ -175,7 +176,7 @@ class Client
      */
     private function actionFactory(string $name, array $arguments, string $namespace)
     {
-        $actionClass =  $namespace . '\\'. ucfirst($name);
+        $actionClass =  $namespace . '\\'. convertSnakeCase($name);
         $actionName = $arguments[0];
         $actionObject = new $actionClass($this->environment->getMerchantData());
         if (!method_exists($actionObject, $actionName)) {

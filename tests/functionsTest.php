@@ -52,4 +52,16 @@ class MyFunctions extends TestCase
         $convertedString = MerchantSafeUnipay\convertCamelCase($str, ' ');
         $this->assertEquals('camel case string', $convertedString);
     }
+
+
+    /**
+     * @test
+     */
+
+    public function shouldChangeSnakeCaseSuccessfully()
+    {
+        $str = 'snake_case_string';
+        $convertedString = MerchantSafeUnipay\convertSnakeCase($str);
+        $this->assertEquals('SnakeCaseString', $convertedString);
+    }
 }

@@ -6,7 +6,6 @@ namespace tests;
 
 use PHPUnit\Framework\TestCase;
 use MerchantSafeUnipay\SDK;
-use MerchantSafeUnipay\SDK\Exception\InvalidArgumentException;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 
@@ -35,22 +34,10 @@ class ClientBuilderClassTest extends TestCase
     public function environmentDataProvider()
     {
         return [
-            ['test', 'm', 'mu', 'mp'],
-            ['production', 'm', 'mu', 'mp']
+            ['https://test.merchantsafeunipay.com/msu/api/v2', 'm', 'mu', 'mp'],
+            ['https://merchantsafeunipay.com/msu/api/v2', 'm', 'mu', 'mp']
         ];
     }
-
-    /**
-     * @test
-     * @expectedException InvalidArgumentException
-     */
-    public function shouldFailToInstantiateClientObjectSuccessfullyForInvalidEnvironment()
-    {
-        SDK\ClientBuilder::create()
-            ->setEnvironment('invalid_env', 'm', 'mu', 'mp')
-            ->build();
-    }
-
 
     /**
      * @test
@@ -63,7 +50,6 @@ class ClientBuilderClassTest extends TestCase
             ->build();
         $this->assertInstanceOf(SDK\Client::class, $client);
     }
-
 
     /**
      * @test

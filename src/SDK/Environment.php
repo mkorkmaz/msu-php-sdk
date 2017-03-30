@@ -1,15 +1,16 @@
 <?php declare(strict_types=1);
 
-namespace MerchantSafeUnipay\SDK\Environment;
+namespace MerchantSafeUnipay\SDK;
 
-abstract class EnvironmentAbstract
+class Environment
 {
     protected $merchant;
     protected $merchantUser;
     protected $merchantPassword;
 
-    public function __construct(string $merchant, string $merchantUser, string $merchantPassword)
+    public function __construct(string $apiUrl, string $merchant, string $merchantUser, string $merchantPassword)
     {
+        $this->apiUrl = $apiUrl;
         $this->merchant = $merchant;
         $this->merchantUser = $merchantUser;
         $this->merchantPassword = $merchantPassword;
@@ -17,7 +18,7 @@ abstract class EnvironmentAbstract
 
     public function getUrl()
     {
-        return static::$apiUrl;
+        return $this->apiUrl;
     }
 
     public function getMerchantData()
