@@ -11,6 +11,9 @@ since Asseco don't provide any PHP SDK.
 
 You need [Composer](https://getcomposer.org/) to install MerchantSafe Unipay PHP SDK
 
+**This library requires PHP 7.0 or later. **
+
+
 ```bash
 composer require mkorkmaz/msu-php-sdk
 ```
