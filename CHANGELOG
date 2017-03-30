@@ -1,5 +1,17 @@
-MerchantSafe Unipay PHP SDK
+MerchantSafe Unipay PHP SDK Changelog
 ===========================
+
+Version 1.0
+---------------------------
+- Documentation added
+
+Version 0.3
+---------------------------
+- Environment handling changed
+
+Version 0.2
+---------------------------
+- All API actions covered
 
 Version 0.1
 ---------------------------

@@ -20,7 +20,7 @@ composer require mkorkmaz/msu-php-sdk
 
 ## Documentation
 
-You can see detailed documentaiton at [https://mkorkmaz.github.io/msu-php-sdk-doc/](https://mkorkmaz.github.io/msu-php-sdk-doc/)
+You can see detailed documentation at [https://mkorkmaz.github.io/msu-php-sdk-doc/](https://mkorkmaz.github.io/msu-php-sdk-doc/)
 
 ## Basic Usage
 
