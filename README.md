@@ -83,4 +83,3 @@ echo $response['data']['responseCode']; // prints '00' which means transaction h
 
 - Integration tests of Actions (At least %80 Code Coverage)
 - Argument combinations for the actions will be implemented
-- Documentation
