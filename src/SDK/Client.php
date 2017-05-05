@@ -178,8 +178,9 @@ class Client
     {
         $actionClass =  $namespace . '\\'. convertSnakeCase($name);
         $actionName = $arguments[0];
+        $actionMethod = convertSnakeCase($actionName, 'f');
         $actionObject = new $actionClass($this->environment->getMerchantData());
-        if (!method_exists($actionObject, $actionName)) {
+        if (!method_exists($actionObject, $actionMethod)) {
             $message = sprintf(
                 '%s/%s is not valid MerchantSafeUnipay API action.',
                 ucfirst($name),
@@ -188,7 +189,7 @@ class Client
             throw new BadMethodCallException($message);
         }
         try {
-            $actionObject->$actionName($arguments[1]);
+            $actionObject->$actionMethod($arguments[1]);
             return $actionObject;
         } catch (TypeError $e) {
             $message = 'This action needs arguments, no argument provided.';

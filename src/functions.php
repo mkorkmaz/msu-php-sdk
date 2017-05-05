@@ -14,7 +14,7 @@ function filter(array $filterKeys, array $arrayData)
     return $filteredData;
 }
 
-function convertCamelCase(string $str, string $separator = '_')
+function convertCamelCase(string $str, string $separator = '_') : string
 {
     return trim(preg_replace_callback(
         '/[A-Z]/',
@@ -25,7 +25,10 @@ function convertCamelCase(string $str, string $separator = '_')
     ), $separator);
 }
 
-function convertSnakeCase(string $str)
+function convertSnakeCase(string $str, $type = 'ucwords') :string
 {
-    return str_replace(' ','', ucwords(str_replace('_', ' ', $str)));
+    if ($type === 'ucwords') {
+        return str_replace(' ', '', ucwords(str_replace('_', ' ', $str)));
+    }
+    return lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $str))));
 }
