@@ -13,7 +13,7 @@
         }
     ],
     "require": {
-        "php": "^7.0",
+        "php": "^7.1",
         "guzzlehttp/guzzle": "^6.2",
         "zendframework/zend-validator": "^2.8",
         "monolog/monolog": "^1.22"

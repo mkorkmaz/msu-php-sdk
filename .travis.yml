@@ -1,8 +1,8 @@
 language: php
 sudo: false
 php:
+- 7.2
 - 7.1
-- 7.0
 before_script:
 - composer install -n
 addons:
@@ -11,7 +11,7 @@ addons:
 script:
 - phpunit --coverage-clover build/logs/clover.xml
 after_script:
-- if [ $TRAVIS_PHP_VERSION = '7.0' ]; then php vendor/bin/coveralls; fi
+- if [ $TRAVIS_PHP_VERSION = '7.1' ]; then php vendor/bin/coveralls; fi
 after_success:
 - travis_retry php vendor/bin/coveralls -v
 - vendor/bin/test-reporter
