@@ -46,9 +46,9 @@ class FinancialTransactionsClassTest extends TestCase
             'CUSTOMEREMAIL' => 'mehmet@mkorkmaz.com',
             'CUSTOMERNAME' => 'Mehmet Korkmaz',
             'CUSTOMERIP'    => '127.0.0.1',
-            'CARDPAN' => '5406675406675403',
+            'CARDPAN' => '5571135571135575',
             'CARDEXPIRY' => '12.30',
-            'NAMEONCARD' => 'ISBANK-MASTER',
+            'NAMEONCARD' => 'AKBANK-MASTER',
             'CARDCVV' => '000'
         ];
         $ftResponse = $this->client->financialTransactions('sale', $args);
@@ -85,9 +85,9 @@ class FinancialTransactionsClassTest extends TestCase
             'CUSTOMEREMAIL' => 'mehmet@mkorkmaz.com',
             'CUSTOMERNAME' => 'Mehmet Korkmaz',
             'CUSTOMERIP'    => '127.0.0.1',
-            'CARDPAN' => '5406675406675403',
+            'CARDPAN' => '5571135571135575',
             'CARDEXPIRY' => '12.30',
-            'NAMEONCARD' => 'ISBANK-MASTER',
+            'NAMEONCARD' => 'AKBANK-MASTER',
             'CARDCVV' => '000'
         ];
         $paResponse = $this->client->financialTransactions('preAuth', $args);
@@ -123,9 +123,9 @@ class FinancialTransactionsClassTest extends TestCase
             'CUSTOMEREMAIL' => 'mehmet@mkorkmaz.com',
             'CUSTOMERNAME' => 'Mehmet Korkmaz',
             'CUSTOMERIP'    => '127.0.0.1',
-            'CARDPAN' => '5406675406675403',
+            'CARDPAN' => '5571135571135575',
             'CARDEXPIRY' => '12.30',
-            'NAMEONCARD' => 'ISBANK-MASTER',
+            'NAMEONCARD' => 'AKBANK-MASTER',
             'CARDCVV' => '000'
         ];
         $sResponse = $this->client->financialTransactions('sale', $args);
